@@ -88,6 +88,11 @@ class UNITYFBXEXPORTER_OT_package_object_list_remove(bpy.types.Operator):
     """Delete the selected item from the list."""
     bl_idname = "unity_fbx_exporter.package_object_list_remove"
     bl_label = "Removes an object pointer"
+
+    index: bpy.props.IntProperty(
+        name="Object index To Remove",
+        default=0
+    )
     
     @classmethod
     def poll(cls, context):
@@ -95,38 +100,8 @@ class UNITYFBXEXPORTER_OT_package_object_list_remove(bpy.types.Operator):
         
     def execute(self, context):
         object_list = context.scene.unity_fbx_exporter.packages[context.scene.unity_fbx_exporter.package_index].objects
-        index = context.scene.unity_fbx_exporter.packages[context.scene.unity_fbx_exporter.package_index].object_index
-        object_list.remove(index)
-        context.scene.unity_fbx_exporter.packages[context.scene.unity_fbx_exporter.package_index].object_index = min(max(0, index - 1), len(object_list) - 1)
+        object_list.remove(self.index)
         return{'FINISHED'}
-        
-class UNITYFBXEXPORTER_OT_package_object_list_move(bpy.types.Operator):
-    """Move an item in the list."""
-    bl_idname = "unity_fbx_exporter.package_object_list_move"
-    bl_label = "Move an item in the list"
-    direction: bpy.props.EnumProperty(items=(('UP', 'Up', ""), ('DOWN', 'Down', ""),))
-    
-    @classmethod
-    def poll(cls, context):
-        return context.scene.unity_fbx_exporter.packages
-        
-    def move_index(self):
-        #""" Move index of an item render queue while clamping it. """
-        #index = bpy.context.scene.unity_fbx_exporter.package_index
-        #list_length = len(bpy.context.scene.unity_fbx_exporter.packages) - 1 # (index starts at 0)
-        #new_index = index + (-1 if self.direction == 'UP' else 1)
-        #
-        #bpy.context.scene.unity_fbx_exporter.package_index = max(0, min(new_index, list_length))
-        pass
-        
-    def execute(self, context):
-        #package_list = context.scene.unity_fbx_exporter.packages
-        #index = context.scene.unity_fbx_exporter.package_index
-        #neighbor = index + (-1 if self.direction == 'UP' else 1)
-        #package_list.move(neighbor, index)
-        #self.move_index()
-        return{'FINISHED'}
-
 
 
 
@@ -141,7 +116,6 @@ def register():
     
     bpy.utils.register_class(UNITYFBXEXPORTER_OT_package_object_list_add)
     bpy.utils.register_class(UNITYFBXEXPORTER_OT_package_object_list_remove)
-    bpy.utils.register_class(UNITYFBXEXPORTER_OT_package_object_list_move)
 
 def unregister():
     bpy.utils.unregister_class(UNITYFBXEXPORTER_OT_export_single)
@@ -153,4 +127,3 @@ def unregister():
 
     bpy.utils.unregister_class(UNITYFBXEXPORTER_OT_package_object_list_add)
     bpy.utils.unregister_class(UNITYFBXEXPORTER_OT_package_object_list_remove)
-    bpy.utils.unregister_class(UNITYFBXEXPORTER_OT_package_object_list_move)

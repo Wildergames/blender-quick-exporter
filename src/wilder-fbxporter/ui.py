@@ -14,7 +14,7 @@ class UNITYFBXEXPORTER_PT_ui(bpy.types.Panel):
 
         """ Export All Button """
         row = layout.row(align=True)
-        row.scale_y = 2.0
+        row.scale_y = 1.5
 
         if scene.unity_fbx_exporter and scene.unity_fbx_exporter.package_index >= 0 and scene.unity_fbx_exporter.packages[scene.unity_fbx_exporter.package_index]:
             row.operator("unity_fbx_exporter.export_single", text="Export '"+scene.unity_fbx_exporter.packages[scene.unity_fbx_exporter.package_index].name+"'")
@@ -53,24 +53,27 @@ class UNITYFBXEXPORTER_PT_ui(bpy.types.Panel):
 
             """ Package Objects List """
             row = column.row()
-            split = row.split(factor=0.25)
+            split = row.split(factor=0.24)
 
             column = split.column()
             column.label(text="Objects:")
             
             column = split.column()
-            column.template_list(
-                "UNITYFBXEXPORTER_UL_package_object_list",
-                "unity_fbx_exporter_package_object_list",
-                item,
-                "objects",
-                item,
-                "object_index")
-            
-            column = row.column()
-            column.operator("unity_fbx_exporter.package_object_list_add", text="", icon="ADD")
-            column.operator("unity_fbx_exporter.package_object_list_remove", text="", icon="REMOVE")
+            box = column.box()
 
+            row = box.row(align=True)
+            row.operator("unity_fbx_exporter.package_object_list_add", text="Add New")
+            row.operator("unity_fbx_exporter.package_object_list_add", text="Add Selected")
+
+            if len(item.objects) <= 0:
+                row=box.row()
+                row.label(text="No Objects Set")
+
+            for object_index in range(len(item.objects)):
+                row = box.row()
+                row.prop(item.objects[object_index], "pointer", text="")
+                row.operator("unity_fbx_exporter.package_object_list_remove", text="", icon="REMOVE").index = object_index
+            
 
 """ Packages List """
 class UNITYFBXEXPORTER_UL_packages_list(bpy.types.UIList):
