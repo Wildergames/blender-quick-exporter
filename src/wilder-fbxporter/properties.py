@@ -1,32 +1,74 @@
 import bpy
 
-# For more information about Blender Properties, visit:
-# <https://blender.org/api/blender_python_api_2_78a_release/bpy.types.Property.html>
-# from bpy.props import BoolProperty
-# from bpy.props import CollectionProperty
-# from bpy.props import EnumProperty
-# from bpy.props import FloatProperty
-# from bpy.props import IntProperty
-# from bpy.props import PointerProperty
-# from bpy.props import StringProperty
-# from bpy.props import PropertyGroup
+class UnityFBXExporterObjectPointer(bpy.types.PropertyGroup):
+    name: bpy.props.StringProperty(
+        name="Name",
+        default="Object"
+    )
 
+    pointer: bpy.props.PointerProperty(
+        name="Object",
+        type=bpy.types.Object
+    )
+
+    def update(self, context):
+        print("UPDATING!"); 
+
+""" Individual Package Data """
 class UnityFBXExporterPackage(bpy.types.PropertyGroup):
-    path: bpy.props.StringProperty(name="Path")
-    scale: bpy.props.FloatProperty(name="Scale", default=1)
-    applyTransform: bpy.props.BoolProperty("Apply Transform", default=True, description="Freeze all transforms on export. (EXPERIMENTAL!)") 
-    applyModifiers: bpy.props.BoolProperty("Apply Modifiers", default=True, description="Applies all modifiers on export") 
+    name: bpy.props.StringProperty(
+        name="Name",
+        default="Untitled Export Package")
 
+    path: bpy.props.StringProperty(
+        name="Path",
+        subtype="FILE_PATH",
+        default="/")
+
+    objects: bpy.props.CollectionProperty(
+        name="Objects",
+        type=UnityFBXExporterObjectPointer)
+        
+    object_index: bpy.props.IntProperty(
+        name="Object Index",
+        description="The currently selected Object in the selected package",
+        default=0)
+
+    scale: bpy.props.FloatProperty(
+        name="Scale",
+        default=1)
+
+    applyTransform: bpy.props.BoolProperty(
+        name="Apply Transform",
+        description="Freeze all transforms on export. (EXPERIMENTAL!)",
+        default=True)
+    
+    applyModifiers: bpy.props.BoolProperty(
+        name="Apply Modifiers",
+        description="Applies all modifiers on export",
+        default=True) 
+
+
+""" Data Container """
 class UnityFBXExporterData(bpy.types.PropertyGroup):
-    #packages = bpy.props.CollectionProperty(type=UnityFBXExporterPackage)
-    packages: bpy.props.PointerProperty(type=UnityFBXExporterPackage)
+    packages: bpy.props.CollectionProperty(
+        name="Packages",
+        type=UnityFBXExporterPackage)
+
+    package_index: bpy.props.IntProperty(
+        name="List Index",
+        default=0)
 
 
+""" Registration """
 def register():
+    bpy.utils.register_class(UnityFBXExporterObjectPointer)
     bpy.utils.register_class(UnityFBXExporterPackage)
     bpy.utils.register_class(UnityFBXExporterData)
-    bpy.types.Scene.fbxporter = bpy.props.PointerProperty(type=UnityFBXExporterData)
+
+    bpy.types.Scene.unity_fbx_exporter = bpy.props.PointerProperty(type=UnityFBXExporterData)
 
 def unregister():
     bpy.utils.unregister_class(UnityFBXExporterPackage)
     bpy.utils.unregister_class(UnityFBXExporterData)
+    bpy.utils.unregister_class(UnityFBXExporterObjectPointer)

@@ -2,7 +2,7 @@ import bpy
 
 class UNITYFBXEXPORTER_PT_ui(bpy.types.Panel):
     """Creates a Panel in the scene context of the properties editor"""
-    bl_idname = "UNITYFBXEPORTER_PT_ui"
+    bl_idname = "UNITYFBXEXPORTER_PT_ui"
     bl_label = "Unity FBX Exporter"
     bl_space_type = 'PROPERTIES'
     bl_region_type = 'WINDOW'
@@ -12,72 +12,103 @@ class UNITYFBXEXPORTER_PT_ui(bpy.types.Panel):
         layout = self.layout
         scene = context.scene
 
-        box = layout.box()
-        box.label(text="Package 1")
-        
-        box = layout.box()
-        box.label(text="Package 2")
-        
-        box = layout.box()
-        box.label(text="Package 3")
-        
-        """ Export All """
-        row = layout.row()
+        """ Export All Button """
+        row = layout.row(align=True)
         row.scale_y = 2.0
+
+        if scene.unity_fbx_exporter and scene.unity_fbx_exporter.package_index >= 0 and scene.unity_fbx_exporter.packages[scene.unity_fbx_exporter.package_index]:
+            row.operator("unity_fbx_exporter.export_single", text="Export '"+scene.unity_fbx_exporter.packages[scene.unity_fbx_exporter.package_index].name+"'")
+        
         row.operator("unity_fbx_exporter.export_all")
-         
 
-        """ EXAMPLES
-
-        # Create a simple row.
-        layout.label(text="Simple Row:")
-
+        """ Packages List """
         row = layout.row()
-        row.prop(scene, "frame_start")
-        row.prop(scene, "frame_end")
+        column = row.column()
+        column.template_list(
+            "UNITYFBXEXPORTER_UL_packages_list",
+            "unity_fbx_exporter_list",
+            scene.unity_fbx_exporter,
+            "packages",
+            scene.unity_fbx_exporter,
+            "package_index")
 
-        # Create an row where the buttons are aligned to each other.
-        layout.label(text=" Aligned Row:")
+        column = row.column()
+        column.operator("unity_fbx_exporter.add_item", text="", icon="ADD")
+        column.operator("unity_fbx_exporter.remove_item", text="", icon="REMOVE")
+        column.operator("unity_fbx_exporter.move_item", text="", icon="TRIA_UP").direction = 'UP'
+        column.operator("unity_fbx_exporter.move_item", text="", icon="TRIA_DOWN").direction = 'DOWN'
 
-        row = layout.row(align=True)
-        row.prop(scene, "frame_start")
-        row.prop(scene, "frame_end")
+        """ Package Editor"""
+        if scene.unity_fbx_exporter.package_index >= 0 and scene.unity_fbx_exporter.packages:
+            i = scene.unity_fbx_exporter.package_index
+            item = scene.unity_fbx_exporter.packages[i]
+            
+            row = layout.row()
+            column = row.column()
 
-        # Create two columns, by using a split layout.
-        split = layout.split()
+            box = column.box()
+            column = box.column()
+            column.prop(item, "name")
+            column.prop(item, "path")
 
-        # First column
-        col = split.column()
-        col.label(text="Column One:")
-        col.prop(scene, "frame_end")
-        col.prop(scene, "frame_start")
+            """ Package Objects List """
+            row = column.row()
+            split = row.split(factor=0.25)
 
-        # Second column, aligned
-        col = split.column(align=True)
-        col.label(text="Column Two:")
-        col.prop(scene, "frame_start")
-        col.prop(scene, "frame_end")
+            column = split.column()
+            column.label(text="Objects:")
+            
+            column = split.column()
+            column.template_list(
+                "UNITYFBXEXPORTER_UL_package_object_list",
+                "unity_fbx_exporter_package_object_list",
+                item,
+                "objects",
+                item,
+                "object_index")
+            
+            column = row.column()
+            column.operator("unity_fbx_exporter.package_object_list_add", text="", icon="ADD")
+            column.operator("unity_fbx_exporter.package_object_list_remove", text="", icon="REMOVE")
 
-        # Big render button
-        layout.label(text="Big Button:")
-        row = layout.row()
-        row.scale_y = 3.0
-        row.operator("render.render")
 
-        # Different sizes in a row
-        layout.label(text="Different button sizes:")
-        row = layout.row(align=True)
-        row.operator("render.render")
+""" Packages List """
+class UNITYFBXEXPORTER_UL_packages_list(bpy.types.UIList):
+    def draw_item(self, context, layout, data, item, icon, active_data, active_propname, index):
+        custom_icon = 'PACKAGE'
+        
+        # Make sure your code supports all 3 layout types
+        if self.layout_type in {'DEFAULT', 'COMPACT'}:
+            layout.label(text=item.name, icon = custom_icon)
+            
+        elif self.layout_type in {'GRID'}:
+            layout.alignment = 'CENTER'
+            layout.label(text="", icon = custom_icon)
 
-        sub = row.row()
-        sub.scale_x = 2.0
-        sub.operator("render.render")
 
-        row.operator("render.render")
-        """
+""" Package Object List """
+class UNITYFBXEXPORTER_UL_package_object_list(bpy.types.UIList):
+    def draw_item(self, context, layout, data, item, icon, active_data, active_propname, index):
+        custom_icon = 'PACKAGE'
+        
+        # Make sure your code supports all 3 layout types
+        if self.layout_type in {'DEFAULT', 'COMPACT'}:
+            layout.label(text=item.name, icon = custom_icon)
+            
+        elif self.layout_type in {'GRID'}:
+            layout.alignment = 'CENTER'
+            layout.label(text="", icon = custom_icon)
 
+
+""" REGISTRATION """
 def register():
     bpy.utils.register_class(UNITYFBXEXPORTER_PT_ui)
+    
+    bpy.utils.register_class(UNITYFBXEXPORTER_UL_packages_list)
+    bpy.utils.register_class(UNITYFBXEXPORTER_UL_package_object_list)
 
 def unregister():
     bpy.utils.unregister_class(UNITYFBXEXPORTER_PT_ui)
+    
+    bpy.utils.unregister_class(UNITYFBXEXPORTER_UL_packages_list)
+    bpy.utils.unregister_class(UNITYFBXEXPORTER_UL_package_object_list)
