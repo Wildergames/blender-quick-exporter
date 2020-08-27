@@ -65,12 +65,14 @@ class UNITYFBXEXPORTER_PT_ui(bpy.types.Panel):
             row.operator("unity_fbx_exporter.package_object_list_add", text="Add New")
             row.operator("unity_fbx_exporter.package_object_list_add", text="Add Selected")
 
+            row = box.row()
+            column = row.column()
+
             if len(item.objects) <= 0:
-                row=box.row()
-                row.label(text="No Objects Set")
+                column.label(text="No Objects Set")
 
             for object_index in range(len(item.objects)):
-                row = box.row()
+                row = column.row()
                 row.prop(item.objects[object_index], "pointer", text="")
                 row.operator("unity_fbx_exporter.package_object_list_remove", text="", icon="REMOVE").index = object_index
             
