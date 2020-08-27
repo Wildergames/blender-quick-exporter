@@ -1,21 +1,36 @@
 import bpy
-from bpy.types import Panel
 
-class FBXporter_PT_fbxporter(bpy.types.Panel):
+class UNITYFBXEXPORTER_PT_ui(bpy.types.Panel):
     """Creates a Panel in the scene context of the properties editor"""
-    bl_label = "FBXporter"
-    bl_idname = "FBXporter_PT_fbxporter"
+    bl_idname = "UNITYFBXEPORTER_PT_ui"
+    bl_label = "Unity FBX Exporter"
     bl_space_type = 'PROPERTIES'
     bl_region_type = 'WINDOW'
-    bl_context = "scene"
+    bl_context = "scene" 
 
     def draw(self, context):
         layout = self.layout
-
         scene = context.scene
 
+        box = layout.box()
+        box.label(text="Package 1")
+        
+        box = layout.box()
+        box.label(text="Package 2")
+        
+        box = layout.box()
+        box.label(text="Package 3")
+        
+        """ Export All """
+        row = layout.row()
+        row.scale_y = 2.0
+        row.operator("unity_fbx_exporter.export_all")
+         
+
+        """ EXAMPLES
+
         # Create a simple row.
-        layout.label(text=" Simple Row:")
+        layout.label(text="Simple Row:")
 
         row = layout.row()
         row.prop(scene, "frame_start")
@@ -59,9 +74,10 @@ class FBXporter_PT_fbxporter(bpy.types.Panel):
         sub.operator("render.render")
 
         row.operator("render.render")
+        """
 
 def register():
-    bpy.utils.register_class(FBXporter_PT_fbxporter)
+    bpy.utils.register_class(UNITYFBXEXPORTER_PT_ui)
 
 def unregister():
-    bpy.utils.unregister_class(FBXporter_PT_fbxporter)
+    bpy.utils.unregister_class(UNITYFBXEXPORTER_PT_ui)
