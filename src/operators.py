@@ -80,7 +80,8 @@ class QUICKEXPORTER_OT_package_object_list_add(bpy.types.Operator):
 	bl_label = "Add a new object pointer"
 	
 	def execute(self, context):
-		context.scene.quick_exporter.packages[context.scene.quick_exporter.package_index].objects.add()
+		object_list = context.scene.quick_exporter.packages[context.scene.quick_exporter.package_index].objects
+		object_list.add()
 		return{'FINISHED'}
 
 class QUICKEXPORTER_OT_package_object_list_add_selected(bpy.types.Operator):
@@ -89,7 +90,26 @@ class QUICKEXPORTER_OT_package_object_list_add_selected(bpy.types.Operator):
 	bl_label = "Add a new object pointer"
 	
 	def execute(self, context):
-		
+		print()
+		print("Quick Exporter: Adding all selected objects (+ added, x skipped)")
+
+		object_list = context.scene.quick_exporter.packages[context.scene.quick_exporter.package_index].objects
+
+		for o in context.selected_objects:
+
+			skip = False
+			for oo in object_list:
+				if oo.pointer == o:
+					print("Quick Exporter:   x " + o.name)
+					skip = True
+
+			if skip:
+				continue
+
+			print("Quick Exporter:   + " + o.name)
+			object_list.add()
+			object_list[len(object_list) - 1].pointer = o
+
 		return{'FINISHED'}
 		
 class QUICKEXPORTER_OT_package_object_list_remove(bpy.types.Operator):
