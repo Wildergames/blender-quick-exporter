@@ -5,7 +5,7 @@ class QUICKEXPORTER_OT_export_all(bpy.types.Operator):
     bl_label = "Export All"
     
     def execute(self, context):
-        print("Exporting All FBX Files")
+        print("Quick Exporter: Exporting All FBX Files")
         return {'FINISHED'}
 
 class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
@@ -15,7 +15,7 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
     index: bpy.props.IntProperty(name="Index", default=0)
 
     def execute(self, context):
-        print("Exporting Single FBX File (" + index + ")")
+        print("Quick Exporter: Exporting Single FBX File (" + index + ")")
         return {'FINISHED'}
 
 
@@ -76,8 +76,17 @@ class QUICKEXPORTER_OT_list_move(bpy.types.Operator):
 
 """ Package Objects List """
 class QUICKEXPORTER_OT_package_object_list_add(bpy.types.Operator):
-    """Add a new item to the list."""
+    """Add a new item to the object list."""
     bl_idname = "quick_exporter.package_object_list_add"
+    bl_label = "Add a new object pointer"
+    
+    def execute(self, context):
+        context.scene.quick_exporter.packages[context.scene.quick_exporter.package_index].objects.add()
+        return{'FINISHED'}
+
+class QUICKEXPORTER_OT_package_object_list_add_selected(bpy.types.Operator):
+    """Add all selected objects to the object list."""
+    bl_idname = "quick_exporter.package_object_list_add_selected"
     bl_label = "Add a new object pointer"
     
     def execute(self, context):
@@ -115,6 +124,7 @@ def register():
     bpy.utils.register_class(QUICKEXPORTER_OT_list_move)
     
     bpy.utils.register_class(QUICKEXPORTER_OT_package_object_list_add)
+    bpy.utils.register_class(QUICKEXPORTER_OT_package_object_list_add_selected)
     bpy.utils.register_class(QUICKEXPORTER_OT_package_object_list_remove)
 
 def unregister():
@@ -126,4 +136,5 @@ def unregister():
     bpy.utils.unregister_class(QUICKEXPORTER_OT_list_move)
 
     bpy.utils.unregister_class(QUICKEXPORTER_OT_package_object_list_add)
+    bpy.utils.unregister_class(QUICKEXPORTER_OT_package_object_list_add_selected)
     bpy.utils.unregister_class(QUICKEXPORTER_OT_package_object_list_remove)

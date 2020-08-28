@@ -21,6 +21,10 @@ class QUICKEXPORTER_PT_ui(bpy.types.Panel):
         
         row.operator("quick_exporter.export_all")
 
+        """ Auto-Export """
+        row = layout.row()
+        row.prop(scene.quick_exporter, "auto_export")
+
         """ Packages List """
         row = layout.row()
         column = row.column()
@@ -63,7 +67,7 @@ class QUICKEXPORTER_PT_ui(bpy.types.Panel):
 
             row = box.row(align=True)
             row.operator("quick_exporter.package_object_list_add", text="Add New")
-            row.operator("quick_exporter.package_object_list_add", text="Add Selected")
+            row.operator("quick_exporter.package_object_list_add_selected", text="Add Selected")
 
             row = box.row()
             column = row.column()
