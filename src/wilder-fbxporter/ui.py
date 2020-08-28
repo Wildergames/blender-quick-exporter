@@ -117,3 +117,6 @@ def unregister():
     
     bpy.utils.unregister_class(UNITYFBXEXPORTER_UL_packages_list)
     bpy.utils.unregister_class(UNITYFBXEXPORTER_UL_package_object_list)
+
+def reload():
+    pass

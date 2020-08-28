@@ -11,10 +11,10 @@ bl_info = {
         }
 
 import bpy
+import importlib
 from . import ui
 from . import operators
 from . import properties
-
 
 def register():
     properties.register()
@@ -27,5 +27,14 @@ def unregister():
     operators.unregister()
     ui.unregister()
 
+def reload():
+    properties.reload()
+    operators.reload()
+    ui.reload()
+
+
+
 if __name__ == "__main__":
     register()
+
+
