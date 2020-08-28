@@ -1,11 +1,19 @@
 import bpy
+import os
 
 class QUICKEXPORTER_OT_export_all(bpy.types.Operator):
 	bl_idname = "quick_exporter.export_all"
 	bl_label = "Export All"
 	
 	def execute(self, context):
-		print("Quick Exporter: Exporting All FBX Files")
+		package_count = len(context.scene.quick_exporter.packages)
+
+		print()
+		print("Quick Exporter: Exporting All Packages (" + str(package_count) + ")")
+		
+		for i in range(package_count):
+			bpy.ops.quick_exporter.export_single(index = i)
+
 		return {'FINISHED'}
 
 class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
@@ -15,9 +23,44 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 	index: bpy.props.IntProperty(name="Index", default=0)
 
 	def execute(self, context):
-		print("Quick Exporter: Exporting Single FBX File (" + index + ")")
-		return {'FINISHED'}
+		package = context.scene.quick_exporter.packages[self.index]
+		
+		print()
+		print("Quick Exporter: Exporting Package " + str(self.index) + " (" + package.name + ")")
 
+		# export to blend file location
+		basedir = os.path.dirname(bpy.data.filepath)
+		if not basedir:
+			raise Exception("Quick Exporter: .blend file has not been saved. Save before exporting.")
+
+		# Store previous selection
+		prev_selection = context.selected_objects
+		prev_active = context.active_object
+
+		# Deselect all objects
+		bpy.ops.object.select_all(action='DESELECT')
+
+		for obj in package.objects:
+			print("Quick Exporter:    + " + obj.pointer.name)
+			obj.pointer.select_set(True)
+
+
+		path = bpy.path.ensure_ext(bpy.path.abspath(package.path), '.fbx')
+		print(path)
+		
+		bpy.ops.export_scene.fbx(
+			filepath=path,
+			use_selection=True,
+			)
+
+		# Restore previous selection
+		bpy.ops.object.select_all(action='DESELECT')
+		context.view_layer.objects.active = prev_active
+		for obj in prev_selection:
+			obj.select_set(True)
+
+		print("Quick Exporter: Exported to " + path)
+		return {'FINISHED'}
 
 
 """ Packages List """

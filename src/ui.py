@@ -17,7 +17,8 @@ class QUICKEXPORTER_PT_ui(bpy.types.Panel):
 		row.scale_y = 1.5
 
 		if scene.quick_exporter and scene.quick_exporter.package_index >= 0 and len(scene.quick_exporter.packages) > scene.quick_exporter.package_index and scene.quick_exporter.packages[scene.quick_exporter.package_index]:
-			row.operator("quick_exporter.export_single", text="Export '"+scene.quick_exporter.packages[scene.quick_exporter.package_index].name+"'")
+			export_text = "Export '" + scene.quick_exporter.packages[scene.quick_exporter.package_index].name + "'"
+			row.operator("quick_exporter.export_single",text=export_text).index = scene.quick_exporter.package_index
 		
 		row.operator("quick_exporter.export_all")
 
