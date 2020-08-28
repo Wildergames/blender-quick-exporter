@@ -33,18 +33,19 @@ Alternatively, you may select an individual package from the list, and click the
 ## Auto-Export
 In the Quick Exporter panel, there is an option to enable auto-exporting on save. You can choose one of three options:
 
-1. `Disabled` - This will prevent Quick Exporter from automatically exporting on save. This is the default auto-export setting. With this option selected, users are required to manually use the `Export` buttons through the Quick Exporter interface.
+- `Disabled` - This will prevent Quick Exporter from automatically exporting on save. This is the default auto-export setting. With this option selected, users are required to manually use the `Export` buttons through the Quick Exporter interface.
 
-2. `Auto-Export On Save` - This will export all packages when the Blend File is saved.
+- `Auto-Export On Save` - This will export all packages when the Blend File is saved.
 
 
 ---
 ## Blender Development Lifehacks
+We decided to throw these in here so they aren't forgotten, as blender scripting can sometimes be a bit frustrating.
 
 ### Reload Scripts Shortcut
 Add a `Reload Scripts` shortcut to Blender from `Edit > Preferences > Key Map` by adding a new item to the `Window` category, with the script text set to `script.reload`
 
-We use `F8` as the shortcut key, and we disable `Repeat`
+We disable `Repeat` and use `F8` as the shortcut key.  
 
 ### Symlinking Addon Directories
 Symlink the `src` directory to a directory in the Blender addons folder to avoid having to manually copy+paste your addon into the Blender addons folder every time you make a change to your scripts.
@@ -56,4 +57,31 @@ Symlink the `src` directory to a directory in the Blender addons folder to avoid
 `ln -s './src' 'Macintosh HD/Users/{USERNAME}/Library/Application Support/Blender/{BLENDER_VERSION}/scripts/addons/quick-exporter'`
 
 ### Module Reloading
-Use importlib.reload(module) to reload addon modules when a change is detected, to prevent Blender from using a cached version of your addon scripts
+Use importlib.reload(module) to reload addon modules when scripts are reloaded, otherwise Blender will cache your scripts and won't update until you restart the editor. This, combined with the `Reload Scripts Shortuct` tip above make development much quicker.
+
+```python
+# Check if your scripts have already been imported
+# If true, reload instead of importing
+
+import bpy
+
+if "x" not in locals():
+	from . import x, y, z
+	print("Quick Exporter: Importing")
+else:
+	import importlib
+	x = importlib.reload(x)
+	y = importlib.reload(y)
+	z = importlib.reload(z)
+	print("Quick Exporter: Reloading Scripts") 
+
+# replace x y z with your own script names
+# It's not elegant, but it does the job!
+```
+
+### Quickly Find the Right Documentation
+When looking for Blender scripting documentation, search for bpy.{namespace}
+
+This  will always show scripting pages, instead of usage docs and tuts.
+
+Also, searching for the namespace of an class instead of the class name will sometimes yield better results!
