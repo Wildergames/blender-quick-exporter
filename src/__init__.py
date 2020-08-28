@@ -1,11 +1,11 @@
 
 bl_info = {
-        "name": "Unity FBX Exporter",
-        "description": "Allows for the creation and exporting of custom FBX packages to Unity",
+        "name": "Quick Exporter",
+        "description": "Allows for the quick creation and exporting of custom FBX packages",
         "author": "Wilder Games Inc.",
         "version": (1, 0),
         "blender": (2, 80, 0),
-        "location": "Properties > Scene > Unity FBX Exporter",
+        "location": "Properties > Scene > Quick Exporter",
         "support": "COMMUNITY",
         "category": "Import-Export"
         }

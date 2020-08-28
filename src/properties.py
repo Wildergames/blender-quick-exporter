@@ -1,6 +1,6 @@
 import bpy
 
-class UnityFBXExporterObjectPointer(bpy.types.PropertyGroup):
+class QUICKEXPORTER_ObjectPointer(bpy.types.PropertyGroup):
     name: bpy.props.StringProperty(
         name="Name",
         default="Object"
@@ -15,7 +15,7 @@ class UnityFBXExporterObjectPointer(bpy.types.PropertyGroup):
         print("UPDATING!"); 
 
 """ Individual Package Data """
-class UnityFBXExporterPackage(bpy.types.PropertyGroup):
+class QUICKEXPORTER_ExportPackage(bpy.types.PropertyGroup):
     name: bpy.props.StringProperty(
         name="Name",
         default="Untitled Export Package")
@@ -27,7 +27,7 @@ class UnityFBXExporterPackage(bpy.types.PropertyGroup):
 
     objects: bpy.props.CollectionProperty(
         name="Objects",
-        type=UnityFBXExporterObjectPointer)
+        type=QUICKEXPORTER_ObjectPointer)
         
     object_index: bpy.props.IntProperty(
         name="Object Index",
@@ -50,10 +50,10 @@ class UnityFBXExporterPackage(bpy.types.PropertyGroup):
 
 
 """ Data Container """
-class UnityFBXExporterData(bpy.types.PropertyGroup):
+class QUICKEXPORTER_Data(bpy.types.PropertyGroup):
     packages: bpy.props.CollectionProperty(
         name="Packages",
-        type=UnityFBXExporterPackage)
+        type=QUICKEXPORTER_ExportPackage)
 
     package_index: bpy.props.IntProperty(
         name="List Index",
@@ -62,13 +62,13 @@ class UnityFBXExporterData(bpy.types.PropertyGroup):
 
 """ Registration """
 def register():
-    bpy.utils.register_class(UnityFBXExporterObjectPointer)
-    bpy.utils.register_class(UnityFBXExporterPackage)
-    bpy.utils.register_class(UnityFBXExporterData)
+    bpy.utils.register_class(QUICKEXPORTER_ObjectPointer)
+    bpy.utils.register_class(QUICKEXPORTER_ExportPackage)
+    bpy.utils.register_class(QUICKEXPORTER_Data)
 
-    bpy.types.Scene.unity_fbx_exporter = bpy.props.PointerProperty(type=UnityFBXExporterData)
+    bpy.types.Scene.quick_exporter = bpy.props.PointerProperty(type=QUICKEXPORTER_Data)
 
 def unregister():
-    bpy.utils.unregister_class(UnityFBXExporterPackage)
-    bpy.utils.unregister_class(UnityFBXExporterData)
-    bpy.utils.unregister_class(UnityFBXExporterObjectPointer)
+    bpy.utils.unregister_class(QUICKEXPORTER_ExportPackage)
+    bpy.utils.unregister_class(QUICKEXPORTER_Data)
+    bpy.utils.unregister_class(QUICKEXPORTER_ObjectPointer)
