@@ -80,8 +80,6 @@ else:
 ```
 
 ### Quickly Find the Right Documentation
-When looking for Blender scripting documentation, search for bpy.{namespace}
+When looking for Blender scripting documentation, search for `bpy.{namespace}`. This  will usually show scripting pages, instead of usage docs and tuts.
 
-This  will always show scripting pages, instead of usage docs and tuts.
-
-Also, searching for the namespace of an class instead of the class name will sometimes yield better results!
+Also, it seems as if searching for the *namespace* of an class instead of the class's name will sometimes yield better search results!
