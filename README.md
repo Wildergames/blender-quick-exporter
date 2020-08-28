@@ -42,10 +42,10 @@ In the Quick Exporter panel, there is an option to enable auto-exporting on save
 ### Symlinking Addon Directories
 Symlink the `src` directory to a directory in the Blender addons folder to avoid having to manually copy+paste your addon into the Blender addons folder every time you make a change to your scripts.
 
-**Windows** - From the command line, use the following command:  
+**Windows** - From the VSCode terminal, use the following command:  
 `mklink /J "./src" "C:\Users\{USERNAME}\AppData\Roaming\Blender Foundation\Blender\{BLENDER_VERSION}\scripts\addons\quick-exporter"`
 
-**MacOS** - In Terminal, use the following command:  
+**MacOS** - From the VSCode Terminal, use the following command:  
 `ln -s './src' 'Macintosh HD/Users/{USERNAME}/Library/Application Support/Blender/{BLENDER_VERSION}/scripts/addons/quick-exporter'`
 
 ### Module Reloading
