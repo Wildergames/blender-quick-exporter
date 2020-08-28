@@ -11,30 +11,32 @@ bl_info = {
         }
 
 import bpy
-import importlib
-from . import ui
-from . import operators
-from . import properties
 
+# Check if scripts have already been imported
+# If true, reload instead of importing
+if "ui" not in locals():
+    from . import properties, operators, app_handlers, ui 
+    print("Quick Exporter: Importing")
+else:
+    import importlib
+    properties = importlib.reload(properties)
+    operators = importlib.reload(operators)
+    app_handlers = importlib.reload(app_handlers)
+    ui = importlib.reload(ui)
+    print("Quick Exporter: Reloading Scripts") 
+
+""" Registration """
 def register():
     properties.register()
     operators.register()
+    app_handlers.register()
     ui.register()
-
 
 def unregister():
     properties.unregister()
     operators.unregister()
-    ui.unregister()
-
-def reload():
-    properties.reload()
-    operators.reload()
-    ui.reload()
-
-
+    app_handlers.unregister() 
+    ui.unregister() 
 
 if __name__ == "__main__":
     register()
-
-
