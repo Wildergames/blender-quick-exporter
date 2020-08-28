@@ -57,9 +57,7 @@ class QUICKEXPORTER_Data(bpy.types.PropertyGroup):
 	auto_export: bpy.props.EnumProperty(
 		name="Auto Export",
 		description="Whether or not to automatically export all Export Packages on save",
-		items={
-			("DISABLED", "Disabled", 'Do not auto-export on save'),
-			("ENABLED", 'Export All On Save', 'Export all export packages each time the .blend file is saved.')})
+		items={("DISABLED", "Disabled", 'Do not auto-export on save'),("ENABLED", 'Export All On Save', 'Export all export packages each time the .blend file is saved.')})
 
 
 """ Registration """
