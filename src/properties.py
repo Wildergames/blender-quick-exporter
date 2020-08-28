@@ -1,11 +1,6 @@
 import bpy
 
 class QUICKEXPORTER_ObjectPointer(bpy.types.PropertyGroup):
-	name: bpy.props.StringProperty(
-		name="Name",
-		default="Object"
-	)
-
 	pointer: bpy.props.PointerProperty(
 		name="Object",
 		type=bpy.types.Object
