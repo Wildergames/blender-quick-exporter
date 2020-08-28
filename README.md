@@ -9,7 +9,9 @@ Install addon by copying src directory into your Blender addons directory, as `q
 
 
 ## The 'Quick Exporter' Panel
-This addon is controlled from a single panel in Blender, located at: `Properties > Scene > Quick Exporter`
+This addon is controlled from a single panel in Blender, located at: `Properties > Scene Tab > Quick Exporter`
+
+This panel may be dragged above the other Scene Tab panels, for quick access
 
 
 ## Creating an Export Package
@@ -38,6 +40,11 @@ In the Quick Exporter panel, there is an option to enable auto-exporting on save
 
 ---
 ## Blender Development Lifehacks
+
+### Reload Scripts Shortcut
+Add a `Reload Scripts` shortcut to Blender from `Edit > Preferences > Key Map` by adding a new item to the `Window` category, with the script text set to `script.reload`
+
+We use `F8` as the shortcut key, and we disable `Repeat`
 
 ### Symlinking Addon Directories
 Symlink the `src` directory to a directory in the Blender addons folder to avoid having to manually copy+paste your addon into the Blender addons folder every time you make a change to your scripts.
