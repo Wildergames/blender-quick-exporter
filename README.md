@@ -1,7 +1,7 @@
 # Quick Exporter
-Allows users to configure exportable packages from objects within a blender file, which can be exported manually and/or automatically as individual FBX files.
+A Blender addon which allows users to configure exportable packages from objects within a blender file. These `export packages` can be exported manually and/or automatically as individual FBX files.
 
-This addon is intended to be as set-it-and-forget-it as possible. Once you've created and configured your export packages, you shouldn't need to change and of the Quick Exporter settings.
+This addon is intended to be as set-it-and-forget-it as possible. Once you've created and configured your export packages, you shouldn't need to change and of the Quick Exporter settings very often.
 
 
 ## Installation
