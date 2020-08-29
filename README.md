@@ -43,9 +43,14 @@ In the Quick Exporter panel, there is an option to enable auto-exporting on save
 We decided to throw these in here so they aren't forgotten, as blender scripting can sometimes be a bit frustrating.
 
 ### Reload Scripts Shortcut
-Add a `Reload Scripts` shortcut to Blender from `Edit > Preferences > Key Map` by adding a new item to the `Window` category, with the script text set to `script.reload`
+Add a `Reload Scripts` shortcut to Blender from `Edit > Preferences > Keymap` by adding a new item to the `Window` category, with the script text set to `script.reload`
 
 We disable `Repeat` and use `F8` as the shortcut key.  
+
+### Toggle Console Shortcut
+Add a `Toggle Console` shortcut to Blender from `Edit > Preferences > Keymap` by adding a new item to the `Window` category, with the script text set to `wm.console_toggle`
+
+We disable `Repeat` and use `F9` as the shortcut key.  
 
 ### Symlinking Addon Directories
 Symlink the `src` directory to a directory in the Blender addons folder to avoid having to manually copy+paste your addon into the Blender addons folder every time you make a change to your scripts.
