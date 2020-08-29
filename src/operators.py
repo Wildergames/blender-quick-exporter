@@ -24,6 +24,7 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 
 	def execute(self, context):
 		package = context.scene.quick_exporter.packages[self.index]
+		settings = package.settings
 		
 		print()
 		print("Quick Exporter: Exporting Package " + str(self.index) + " (" + package.name + ")")
@@ -49,9 +50,46 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		print(path)
 		
 		bpy.ops.export_scene.fbx(
-			filepath=path,
-			use_selection=True,
-			)
+			filepath = path,
+			check_existing = False,
+			# filter_glob
+
+			# Include
+			use_selection = True,
+			use_active_collection = False,
+			object_types = { "EMPTY", "CAMERA", "LIGHT", "ARMATURE", "MESH", "OTHER" },
+			use_custom_props = True,
+
+			# Transform
+			global_scale = settings.transform.scale,
+			apply_scale_options = settings.transform.apply_scalings,
+			axis_forward = settings.transform.axis_forward,
+			axis_up = settings.transform.axis_up,
+			apply_unit = settings.transform.apply_unit,
+			bake_space_transform = settings.apply_transform,
+
+			# Geometry
+			#   Smoothing
+			#   Export Subdivision Surface (x - FALSE)
+			apply_modifiers = settings.geometry.apply_modifiers,
+			#   Loose Edges
+			#   Tangent Space
+
+			# Armature
+			#   Primary Bone Axis
+			#   Secondary Bone Axis
+			#   Only Deform Bones
+			add_leaf_bones = settings.armature.add_leaf_bones,
+
+			# Bake Animations
+			bake_anim = settings.animation.bake,
+			bake_anim_use_all_bones = settings.animation.key_all_bones,
+			bake_anim_use_nla_strips = settings.animation.nla_strips,
+			bake_anim_use_all_actions = settings.animation.all_actions,
+			bake_anim_force_startend_keying = settings.animation.force_keying,
+			bake_anim_step = settings.animation.sampling_rate,
+			bake_anim_simplify_factor = settings.animation.simplify,
+		)
 
 		# Restore previous selection
 		bpy.ops.object.select_all(action='DESELECT')
