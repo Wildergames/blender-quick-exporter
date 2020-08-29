@@ -1,4 +1,4 @@
-# Python Cached Scrripts
+# Python Cached Scripts
 *__pycache__
 
 # Blender backup files
@@ -7,3 +7,6 @@
 *.blend3
 *.blend4
 *.blend5
+
+# VSCode
+*.code-workspace
