@@ -85,6 +85,8 @@ else:
 ```
 
 ### Quickly Find the Right Documentation
+Check the built-in templates first! Located at `Text Editor > Templates` - This has a lot of great examples of common functionality.
+
 When looking for Blender scripting documentation, search for `bpy.{namespace}`. This  will usually show scripting pages, instead of usage docs and tuts.
 
 Also, it seems as if searching for the *namespace* of an class instead of the class's name will sometimes yield better search results!
