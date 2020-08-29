@@ -52,33 +52,35 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		bpy.ops.export_scene.fbx(
 			filepath = path,
 			check_existing = False,
-			# filter_glob
 
 			# Include
 			use_selection = True,
 			use_active_collection = False,
 			object_types = { "EMPTY", "CAMERA", "LIGHT", "ARMATURE", "MESH", "OTHER" },
-			use_custom_props = True,
+
+			# Include
+			use_custom_props = settings.include.custom_properties,
 
 			# Transform
 			global_scale = settings.transform.scale,
 			apply_scale_options = settings.transform.apply_scalings,
 			axis_forward = settings.transform.axis_forward,
 			axis_up = settings.transform.axis_up,
-			apply_unit = settings.transform.apply_unit,
-			bake_space_transform = settings.apply_transform,
+			apply_unit_scale = settings.transform.apply_unit,
+			bake_space_transform = settings.transform.apply_transform,
 
 			# Geometry
-			#   Smoothing
-			#   Export Subdivision Surface (x - FALSE)
-			apply_modifiers = settings.geometry.apply_modifiers,
-			#   Loose Edges
-			#   Tangent Space
+			mesh_smooth_type = settings.geometry.smoothing,
+			use_subsurf = settings.geometry.export_subdivision_surface,
+			use_mesh_modifiers  = settings.geometry.apply_modifiers,
+			use_mesh_edges = settings.geometry.loose_edges,
+			use_tspace  = settings.geometry.tangent_space,
 
 			# Armature
-			#   Primary Bone Axis
-			#   Secondary Bone Axis
-			#   Only Deform Bones
+			primary_bone_axis = settings.armature.primary_bone_axis,
+			secondary_bone_axis  = settings.armature.secondary_bone_axis,
+			armature_nodetype = settings.armature.armature_fbx_node_type,
+			use_armature_deform_only = settings.armature.only_deform_bones,
 			add_leaf_bones = settings.armature.add_leaf_bones,
 
 			# Bake Animations

@@ -1,5 +1,66 @@
 import bpy
 
+def draw_settings_foldout(parent, settings_group, text):
+	row = parent.row()
+	row.prop(
+		settings_group,
+		"expanded",
+		icon= "TRIA_DOWN" if settings_group.expanded else "TRIA_RIGHT",
+		icon_only = True,
+		emboss = False
+	)
+
+	row.label(text = text)
+
+	return settings_group.expanded
+
+def draw_settings(parent, package):
+	if draw_settings_foldout(parent, package.settings, "Export Settings"):
+
+		fbx_settings_box = parent.box()
+		fbx_settings_column = fbx_settings_box.column()
+
+		include_box = fbx_settings_column.box()
+		if draw_settings_foldout(include_box, package.settings.include, "Include"):
+			include_box.prop(package.settings.include, "custom_properties")
+
+		transform_box = fbx_settings_column.box()
+		if draw_settings_foldout(transform_box, package.settings.transform, "Transform"):
+			transform_box.prop(package.settings.transform, "scale")
+			transform_box.prop(package.settings.transform, "apply_scalings")
+			transform_box.prop(package.settings.transform, "axis_forward")
+			transform_box.prop(package.settings.transform, "axis_up")
+			transform_box.prop(package.settings.transform, "apply_unit")
+			transform_box.prop(package.settings.transform, "apply_transform")
+
+		geo_box = fbx_settings_column.box()
+		if draw_settings_foldout(geo_box, package.settings.geometry, "Geometry"):
+			geo_box.prop(package.settings.geometry, "smoothing")
+			geo_box.prop(package.settings.geometry, "export_subdivision_surface")
+			geo_box.prop(package.settings.geometry, "apply_modifiers")
+			geo_box.prop(package.settings.geometry, "loose_edges")
+			geo_box.prop(package.settings.geometry, "tangent_space")
+
+		armature_box = fbx_settings_column.box()
+		if draw_settings_foldout(armature_box, package.settings.armature, "Armature"):
+			armature_box.prop(package.settings.armature, "primary_bone_axis")
+			armature_box.prop(package.settings.armature, "secondary_bone_axis")
+			armature_box.prop(package.settings.armature, "armature_fbx_node_type")
+			armature_box.prop(package.settings.armature, "only_deform_bones")
+			armature_box.prop(package.settings.armature, "add_leaf_bones")
+
+		anim_box = fbx_settings_column.box()
+		if draw_settings_foldout(anim_box, package.settings.animation, "Animations"):
+			anim_box.prop(package.settings.animation, "bake")
+			anim_box_container = anim_box.column()
+			anim_box_container.enabled = package.settings.animation.bake
+			anim_box_container.prop(package.settings.animation, "key_all_bones")
+			anim_box_container.prop(package.settings.animation, "nla_strips")
+			anim_box_container.prop(package.settings.animation, "all_actions")
+			anim_box_container.prop(package.settings.animation, "force_keying")
+			anim_box_container.prop(package.settings.animation, "sampling_rate")
+			anim_box_container.prop(package.settings.animation, "simplify")
+
 class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 	bl_idname = "QUICKEXPORTER_PT_panel"
 	bl_label = "Quick Exporter"
@@ -77,57 +138,7 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 				object_row.prop(package.objects[object_index], "pointer", text="")
 				object_row.operator("quick_exporter.package_object_list_remove", text="", icon="REMOVE").index = object_index
 			
-			""" FBX Settings """
-			fbx_settings_box = package_column.box()
-			fbx_settings_box.label(text="Export Settings")
-			fbx_settings_split = fbx_settings_box.split(factor=0.02)
-			fbx_settings_margin_left = fbx_settings_split.column()
-
-			fbx_settings_column = fbx_settings_split.column()
-
-			fbx_settings_column.prop(package.settings.include, "custom_properties", text="Include Custom Properties")
-
-			fbx_settings_column.label()
-			fbx_settings_column.label(text="Transform")
-			transform_box = fbx_settings_column.box()
-			transform_box.prop(package.settings.transform, "scale")
-			transform_box.prop(package.settings.transform, "apply_scalings")
-			transform_box.prop(package.settings.transform, "axis_forward")
-			transform_box.prop(package.settings.transform, "axis_up")
-			transform_box.prop(package.settings.transform, "apply_unit")
-			transform_box.prop(package.settings.transform, "apply_transform")
-
-
-			fbx_settings_column.label()
-			fbx_settings_column.label(text="Geometry")
-			geo_box = fbx_settings_column.box()
-			#   Smoothing
-			#   Export Subdivision Surface
-			geo_box.prop(package.settings.geometry, "apply_modifiers")
-			#   Loose Edges
-			#   Tangent Space
-
-
-			fbx_settings_column.label()
-			fbx_settings_column.label(text="Armature")
-			armature_box = fbx_settings_column.box()
-			#   Primary Bone Axis
-			#   Secondary Bone Axis
-			#   Only Deform Bones
-			armature_box.prop(package.settings.armature, "add_leaf_bones")
-
-			fbx_settings_column.label()
-			fbx_settings_column.label(text="Animations")
-			anim_box = fbx_settings_column.box()
-			anim_box.prop(package.settings.animation, "bake")
-			anim_box_container = anim_box.column()
-			anim_box_container.enabled = package.settings.animation.bake
-			anim_box_container.prop(package.settings.animation, "key_all_bones")
-			anim_box_container.prop(package.settings.animation, "nla_strips")
-			anim_box_container.prop(package.settings.animation, "all_actions")
-			anim_box_container.prop(package.settings.animation, "force_keying")
-			anim_box_container.prop(package.settings.animation, "sampling_rate")
-			anim_box_container.prop(package.settings.animation, "simplify")
+			draw_settings(package_column, package)
 
 
 """ Packages List """

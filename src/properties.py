@@ -8,6 +8,11 @@ class QUICKEXPORTER_ObjectPointer(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsInclude(bpy.types.PropertyGroup):
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+
 	custom_properties: BoolProperty(
 		name = "Custom Properties",
 		description = "Export Custom Properties",
@@ -15,6 +20,11 @@ class QUICKEXPORTER_ExportPackageSettingsInclude(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsTransform(bpy.types.PropertyGroup):
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+
 	scale: FloatProperty(
 		name="Scale",
 		default=1.0
@@ -71,78 +81,162 @@ class QUICKEXPORTER_ExportPackageSettingsTransform(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsGeometry(bpy.types.PropertyGroup):
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+
+	smoothing : EnumProperty(
+		name = "Smoothing",
+		description = "Export smoothing information (prefer ‘Normals Only’ option if your target importer understand split normals)",
+		default = "OFF",
+		items = {
+			("OFF", "Normals Only", "", "", 0),
+			("FACE", "Face", "", "", 1),
+			("EDGE", "Edge", "", "", 2),
+		}
+	)
+	
+	export_subdivision_surface: BoolProperty(
+		name = "Export Subdivision Surface",
+		description = "Export the last Catmull-Rom subdivision modifier as FBX subdivision (does not apply the modifier even if ‘Apply Modifiers’ is enabled)",
+		default = False
+	)
+
 	apply_modifiers: BoolProperty(
-		name="Apply Modifiers",
-		description="Applies all modifiers on export",
-		default=True
+		name = "Apply Modifiers",
+		description = "Applies all modifiers on export",
+		default = True
+	)
+	
+	loose_edges: BoolProperty(
+		name = "Loose Edges",
+		description = "Export loose edges (as two-vertices polygons)",
+		default = False
+	)
+
+	tangent_space: BoolProperty(
+		name = "Tangent Space",
+		description = "Add binormal and tangent vectors, together with normal they form the tangent space (will only work correctly with tris/quads only meshes!)",
+		default = False
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsArmature(bpy.types.PropertyGroup):
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+
+	primary_bone_axis : EnumProperty(
+		name = "Primary Bone Axis",
+		default = "Y",
+		items = {
+			("X", "X Axis", "", "", 0),
+			("Y", "Y AxAxis", "", "", 1),
+			("Z", "Z AxAxis", "", "", 2),
+			("-X", "-X Axis", "", "", 3),
+			("-Y", "-Y Axis", "", "", 4),
+			("-Z", "-Z Axis", "", "", 5)
+		}
+	)
+	
+	secondary_bone_axis : EnumProperty(
+		name = "Secondary Bone Axis",
+		default = "X",
+		items = {
+			("X", "X Axis", "", "", 0),
+			("Y", "Y AxAxis", "", "", 1),
+			("Z", "Z AxAxis", "", "", 2),
+			("-X", "-X Axis", "", "", 3),
+			("-Y", "-Y Axis", "", "", 4),
+			("-Z", "-Z Axis", "", "", 5)
+		}
+	)
+
+	armature_fbx_node_type : EnumProperty(
+		name = "Armature FBXNode Type",
+		description = " FBX type of node (object) used to represent Blender’s armatures (use Null one unless you experience issues with other app, other choices may no import back perfectly in Blender…)",
+		default = "NULL",
+		items = {
+			("NULL", "Null", "", "", 0),
+			("ROOT", "Root", "", "", 1),
+			("LIMBNODE", "Limb Node", "", "", 2),
+		}
+	)
+
+	only_deform_bones: BoolProperty(
+		name = "Only Deform Bones",
+		description = "Only write deforming bones (and non-deforming ones when they have deforming children)",
+		default = False
+	)
+	
 	add_leaf_bones: BoolProperty(
-		name="Add Leaf Bones",
-		description="Append a final bone to the end of each chain to specify last bone length (use this when you intend to edit the armature from exported data)",
-		default=True
+		name = "Add Leaf Bones",
+		description = "Append a final bone to the end of each chain to specify last bone length (use this when you intend to edit the armature from exported data)",
+		default = True
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsAnimation(bpy.types.PropertyGroup):
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+
 	bake: BoolProperty(
-		name="Bake",
-		description="",
-		default=True
+		name = "Bake",
+		description = "",
+		default = True
 	)
 
 	key_all_bones: BoolProperty(
-		name="Key All Bones",
-		description="Force exporting at least one key of animation for all bones (needed with some target applications, like UE4)",
-		default=True
+		name = "Key All Bones",
+		description = "Force exporting at least one key of animation for all bones (needed with some target applications, like UE4)",
+		default = True
 	)
 
 	nla_strips: BoolProperty(
-		name="NLA Strips",
-		description="Export each non-muted NLA strip as a separated FBX’s AnimStack, if any, instead of global scene animation",
-		default=True
+		name = "NLA Strips",
+		description = "Export each non-muted NLA strip as a separated FBX’s AnimStack, if any, instead of global scene animation",
+		default = True
 	)
 
 	all_actions: BoolProperty(
-		name="All Actions",
-		description="Export each action as a separated FBX’s AnimStack, instead of global scene animation (note that animated objects will get all actions compatible with them, others will get no animation at all)",
-		default=True
+		name = "All Actions",
+		description = "Export each action as a separated FBX’s AnimStack, instead of global scene animation (note that animated objects will get all actions compatible with them, others will get no animation at all)",
+		default = True
 	)
 
 	force_keying: BoolProperty(
-		name="Force Start/End Keying",
-		description="Always add a keyframe at start and end of actions for animated channels",
-		default=True
+		name = "Force Start/End Keying",
+		description = "Always add a keyframe at start and end of actions for animated channels",
+		default = True
 	)
 
 	sampling_rate: FloatProperty(
-		name="Sampling Rate",
-		description="Sampling Rate, How often to evaluate animated values (in frames)",
-		default=1
+		name = "Sampling Rate",
+		description = "Sampling Rate, How often to evaluate animated values (in frames)",
+		default = 1
 	)
 	
 	simplify: FloatProperty(
-		name="Simplify",
+		name = "Simplify",
 		description="How much to simplify baked values (0.0 to disable, the higher the more simplified)",
-		default=1
+		default = 1
 	)
-
-
-			#   Key All Bones
-			#   NLA Strips
-			#   All Actions
-			#   Force Start/End Keying
-			#   Sampling Rate 
-			#   Simplify
 
 
 """ Package Export Settings """
 class QUICKEXPORTER_ExportPackageSettings(bpy.types.PropertyGroup):
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+	
 	include: PointerProperty(
 		name="Include",
 		type=QUICKEXPORTER_ExportPackageSettingsInclude
 	)
-	
+
 	transform: PointerProperty(
 		name="Transform",
 		type=QUICKEXPORTER_ExportPackageSettingsTransform
