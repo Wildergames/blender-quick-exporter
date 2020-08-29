@@ -55,10 +55,10 @@ We disable `Repeat` and use `F9` as the shortcut key.
 ### Symlinking Addon Directories
 Symlink the `src` directory to a directory in the Blender addons folder to avoid having to manually copy+paste your addon into the Blender addons folder every time you make a change to your scripts.
 
-**Windows** - From the VSCode terminal, use the following command:  
+**Windows** - From the command line, use the following command:  
 `mklink /J "C:\Users\{USERNAME}\AppData\Roaming\Blender Foundation\Blender\{BLENDER_VERSION}\scripts\addons\quick-exporter" "./src"`
 
-**MacOS** - From the VSCode Terminal, use the following command:  
+**MacOS** - From the Terminal, use the following command:  
 `ln -s './src' 'Macintosh HD/Users/{USERNAME}/Library/Application Support/Blender/{BLENDER_VERSION}/scripts/addons/quick-exporter'`
 
 ### Module Reloading
