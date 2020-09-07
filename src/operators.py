@@ -129,6 +129,28 @@ class QUICKEXPORTER_OT_list_remove(bpy.types.Operator):
 		package_list.remove(index)
 		context.scene.quick_exporter.package_index = min(max(0, index - 1), len(package_list) - 1)
 		return{'FINISHED'}
+
+class QUICKEXPORTER_OT_list_duplicate(bpy.types.Operator):
+	"""Duplicate the selected list item."""
+	bl_idname = "quick_exporter.duplicate_item"
+	bl_label = "Duplicates an item"
+	
+	@classmethod
+	def poll(cls, context):
+		return context.scene.quick_exporter.packages
+		
+	def execute(self, context):
+		package_list = context.scene.quick_exporter.packages
+		selected_index = context.scene.quick_exporter.package_index
+		new_package = package_list[selected_index]
+
+		newIndex = len(package_list)
+		context.scene.quick_exporter.packages.add()
+		print("Quick Exporter: Duplicating Export Package '" + new_package.name + "'")
+
+		context.scene.quick_exporter.packages[newIndex].copy_from(new_package)
+		#context.scene.quick_exporter.package_index = len(package_list) - 1
+		return{'FINISHED'}
 		
 class QUICKEXPORTER_OT_list_move(bpy.types.Operator):
 	"""Move an item in the list."""
@@ -223,6 +245,7 @@ def register():
 
 	bpy.utils.register_class(QUICKEXPORTER_OT_list_add)
 	bpy.utils.register_class(QUICKEXPORTER_OT_list_remove)
+	bpy.utils.register_class(QUICKEXPORTER_OT_list_duplicate)
 	bpy.utils.register_class(QUICKEXPORTER_OT_list_move)
 	
 	bpy.utils.register_class(QUICKEXPORTER_OT_package_object_list_add)
@@ -235,6 +258,7 @@ def unregister():
 
 	bpy.utils.unregister_class(QUICKEXPORTER_OT_list_add)
 	bpy.utils.unregister_class(QUICKEXPORTER_OT_list_remove)
+	bpy.utils.unregister_class(QUICKEXPORTER_OT_list_duplicate)
 	bpy.utils.unregister_class(QUICKEXPORTER_OT_list_move)
 
 	bpy.utils.unregister_class(QUICKEXPORTER_OT_package_object_list_add)

@@ -101,6 +101,7 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 		column = row.column()
 		column.operator("quick_exporter.add_item", text="", icon="ADD")
 		column.operator("quick_exporter.remove_item", text="", icon="REMOVE")
+		column.operator("quick_exporter.duplicate_item", text="", icon="DUPLICATE")
 		column.operator("quick_exporter.move_item", text="", icon="TRIA_UP").direction = 'UP'
 		column.operator("quick_exporter.move_item", text="", icon="TRIA_DOWN").direction = 'DOWN'
 

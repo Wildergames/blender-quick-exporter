@@ -8,6 +8,10 @@ class QUICKEXPORTER_ObjectPointer(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsInclude(bpy.types.PropertyGroup):
+	
+	def copy_from(self, old):
+		self.custom_properties = old.custom_properties
+
 	expanded: BoolProperty(
 		name = "Expanded",
 		default = True
@@ -20,6 +24,15 @@ class QUICKEXPORTER_ExportPackageSettingsInclude(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsTransform(bpy.types.PropertyGroup):
+
+	def copy_from(self, old):
+		self.scale = old.scale
+		self.apply_scalings = old.apply_scalings
+		self.axis_forward = old.axis_forward
+		self.axis_up = old.axis_up
+		self.apply_unit = old.apply_unit
+		self.apply_transform = old.apply_transform
+
 	expanded: BoolProperty(
 		name = "Expanded",
 		default = True
@@ -81,6 +94,14 @@ class QUICKEXPORTER_ExportPackageSettingsTransform(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsGeometry(bpy.types.PropertyGroup):
+	
+	def copy_from(self, old):
+		self.smoothing = old.smoothing
+		self.export_subdivision_surface = old.export_subdivision_surface
+		self.apply_modifiers = old.apply_modifiers
+		self.loose_edges = old.loose_edges
+		self.tangent_space = old.tangent_space
+
 	expanded: BoolProperty(
 		name = "Expanded",
 		default = True
@@ -122,6 +143,14 @@ class QUICKEXPORTER_ExportPackageSettingsGeometry(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsArmature(bpy.types.PropertyGroup):
+
+	def copy_from(self, old):
+		self.primary_bone_axis = old.primary_bone_axis
+		self.secondary_bone_axis = old.secondary_bone_axis
+		self.armature_fbx_node_type = old.armature_fbx_node_type
+		self.only_deform_bones = old.only_deform_bones
+		self.add_leaf_bones = old.add_leaf_bones
+
 	expanded: BoolProperty(
 		name = "Expanded",
 		default = True
@@ -177,6 +206,16 @@ class QUICKEXPORTER_ExportPackageSettingsArmature(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsAnimation(bpy.types.PropertyGroup):
+	
+	def copy_from(self, old):
+		self.bake = old.bake
+		self.key_all_bones = old.key_all_bones
+		self.nla_strips = old.nla_strips
+		self.all_actions = old.all_actions
+		self.force_keying = old.force_keying
+		self.sampling_rate = old.sampling_rate
+		self.simplify = old.simplify
+		
 	expanded: BoolProperty(
 		name = "Expanded",
 		default = True
@@ -227,6 +266,14 @@ class QUICKEXPORTER_ExportPackageSettingsAnimation(bpy.types.PropertyGroup):
 
 """ Package Export Settings """
 class QUICKEXPORTER_ExportPackageSettings(bpy.types.PropertyGroup):
+
+	def copy_from(self, old):
+		self.include.copy_from(old.include)
+		self.transform.copy_from(old.transform)
+		self.geometry.copy_from(old.geometry)
+		self.armature.copy_from(old.armature)
+		self.animation.copy_from(old.animation)
+
 	expanded: BoolProperty(
 		name = "Expanded",
 		default = True
@@ -260,6 +307,20 @@ class QUICKEXPORTER_ExportPackageSettings(bpy.types.PropertyGroup):
 
 """ Individual Package Data """
 class QUICKEXPORTER_ExportPackage(bpy.types.PropertyGroup):
+
+	def copy_from(self, old):
+		self.name = old.name
+		self.path = old.path
+
+		'''Set Object References Manually'''
+		self.objects.clear()
+		for o in old.objects:
+			self.objects.add()
+			self.objects[len(self.objects) - 1].pointer = o.pointer
+
+		self.object_index = old.object_index
+		self.settings.copy_from(old.settings)
+
 	name: StringProperty(
 		name="Name",
 		default="Untitled Export Package"
