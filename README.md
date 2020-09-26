@@ -9,7 +9,7 @@ Install addon by copying src directory into your Blender addons directory, as `q
 
 
 ## The 'Quick Exporter' Panel
-This addon is controlled from a single panel in Blender, located at: `Properties > Scene Tab > Quick Exporter`
+This addon is controlled from a single panel in Blender, located at: `3D Viewportt > Sidebar > Quick Exporter`
 
 This panel may be dragged above the other Scene Tab panels, for quick access
 

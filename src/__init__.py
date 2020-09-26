@@ -5,7 +5,7 @@ bl_info = {
 	"author": "Wilder Games Inc.",
 	"version": (1, 0),
 	"blender": (2, 80, 0),
-	"location": "Properties > Scene > Quick Exporter",
+	"location": "3D View > Sidebar > Quick Exporter",
 	"support": "COMMUNITY",
 	"category": "Import-Export"
 	}

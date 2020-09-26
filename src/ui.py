@@ -62,11 +62,11 @@ def draw_settings(parent, package):
 			anim_box_container.prop(package.settings.animation, "simplify")
 
 class QUICKEXPORTER_PT_panel(bpy.types.Panel):
-	bl_idname = "QUICKEXPORTER_PT_panel"
-	bl_label = "Quick Exporter"
-	bl_space_type = 'PROPERTIES'
-	bl_region_type = 'WINDOW'
-	bl_context = "scene" 
+	bl_idname = 'QUICKEXPORTER_PT_panel'
+	bl_label = 'Quick Exporter'
+	bl_space_type = 'VIEW_3D'
+	bl_region_type = 'UI'
+	bl_category = 'Quick Exporter'
 
 	def draw(self, context):
 		layout = self.layout
