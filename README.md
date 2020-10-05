@@ -1,17 +1,17 @@
-# Quick Exporter
+# Blender Quick Exporter
 A Blender addon which allows users to configure exportable packages from objects within a blender file. These `export packages` can be exported manually and/or automatically as individual FBX files.
 
-This addon is intended to be as set-it-and-forget-it as possible. Once you've created and configured your export packages, you shouldn't need to change and of the Quick Exporter settings very often.
+This addon is intended to be a set-it-and-forget-it solution to FBX exporting. Once you've created and configured your export packages, you shouldn't need to change and of the Quick Exporter settings very often. Simply modify your mesh, and press the one of the Export buttons.
 
 
-## Installation
-Install addon by copying src directory into your Blender addons directory, as `quick-exporter`
+# Installation
+This addon is installed by copying the src directory into your Blender addons directory, as `quick-exporter`
 
+
+# How to Use
 
 ## The 'Quick Exporter' Panel
-This addon is controlled from a single panel in Blender, located at: `3D Viewportt > Sidebar > Quick Exporter`
-
-This panel may be dragged above the other Scene Tab panels, for quick access
+This addon is controlled from a single panel in Blender, located at: `3D Viewport > Sidebar > Quick Exporter`
 
 
 ## Creating an Export Package
