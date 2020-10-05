@@ -25,7 +25,8 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 	def execute(self, context):
 		package = context.scene.quick_exporter.packages[self.index]
 		settings = package.settings
-		
+		context_mode = context.object.mode
+
 		print()
 		print("Quick Exporter: Exporting Package " + str(self.index) + " (" + package.name + ")")
 
@@ -39,12 +40,12 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		prev_active = context.active_object
 
 		# Deselect all objects
+		bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 		bpy.ops.object.select_all(action='DESELECT')
 
 		for obj in package.objects:
 			print("Quick Exporter:    + " + obj.pointer.name)
 			obj.pointer.select_set(True)
-
 
 		path = bpy.path.ensure_ext(bpy.path.abspath(package.path), '.fbx')
 		print(path)
@@ -96,8 +97,12 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		# Restore previous selection
 		bpy.ops.object.select_all(action='DESELECT')
 		context.view_layer.objects.active = prev_active
+
 		for obj in prev_selection:
 			obj.select_set(True)
+
+		# Switch back to previous context mode
+		bpy.ops.object.mode_set(mode=context_mode, toggle=False)
 
 		print("Quick Exporter: Exported to " + path)
 		return {'FINISHED'}
