@@ -3,6 +3,18 @@ A Blender addon which allows users to configure exportable packages from objects
 
 This addon is intended to be a set-it-and-forget-it solution to FBX exporting. Once you've created and configured your export packages, you shouldn't need to change and of the Quick Exporter settings very often. Simply modify your mesh, and press the one of the Export buttons.
 
+# Quick Start
+1. Install addon
+2. Open addon Panel `(View3D > Sidebar > Quick Exporter)`
+3. Create a new `'Export Package'`
+4. Add a `name` to the new 'Export Package'
+5. Add a `path` to export your package to.
+6. Add an `object` (or multiple) to the 'Export Package'
+7. If necessary, modify the 'Export Package' settings
+8. Click one of the two `Export` buttons
+
+Now you have an 'Export Package' which will always export the objects you've specified to the location specified, with one click of a button.
+
 
 # Installation
 This addon is installed by copying the src directory into your Blender addons directory, as `quick-exporter`
@@ -15,13 +27,13 @@ This addon is controlled from a single panel in Blender, located at: `3D Viewpor
 
 
 ## Creating an Export Package
-An "export package" is a collection of Blender scene objects intended to be exported to a single .fbx file. 
+An `Export Package` is a collection of Blender scene objects intended to be exported to a single .fbx file. 
 
 From the Quick Exporter panel, you can create a new export package from the package list.
 
 Once you've done that, you'll be able to set all the necessary .fbx export settings, as well as a path for your exported .fbx file.
 
-Once you've set up an export package, you shouldn't need to modify it again. 
+Once you've set up an export package, you shouldn't need to modify it again.
 
 
 ## Exporting an Export Package
@@ -39,20 +51,21 @@ In the Quick Exporter panel, there is an option to enable auto-exporting on save
 
 
 ---
-## Blender Development Lifehacks
+
+# Blender Development Lifehacks
 We decided to throw these in here so they aren't forgotten, as blender scripting can sometimes be a bit frustrating.
 
-### Reload Scripts Shortcut
+## Reload Scripts Shortcut
 Add a `Reload Scripts` shortcut to Blender from `Edit > Preferences > Keymap` by adding a new item to the `Window` category, with the script text set to `script.reload`
 
 We disable `Repeat` and use `F8` as the shortcut key.  
 
-### Toggle Console Shortcut
+## Toggle Console Shortcut
 Add a `Toggle Console` shortcut to Blender from `Edit > Preferences > Keymap` by adding a new item to the `Window` category, with the script text set to `wm.console_toggle`
 
 We disable `Repeat` and use `F9` as the shortcut key.  
 
-### Symlinking Addon Directories
+## Symlinking Addon Directories
 Symlink the `src` directory to a directory in the Blender addons folder to avoid having to manually copy+paste your addon into the Blender addons folder every time you make a change to your scripts.
 
 **Windows** - From the command line, use the following command:  
@@ -61,7 +74,7 @@ Symlink the `src` directory to a directory in the Blender addons folder to avoid
 **MacOS** - From the Terminal, use the following command:  
 `ln -s './src' 'Macintosh HD/Users/{USERNAME}/Library/Application Support/Blender/{BLENDER_VERSION}/scripts/addons/quick-exporter'`
 
-### Module Reloading
+## Module Reloading
 Use importlib.reload(module) to reload addon modules when scripts are reloaded, otherwise Blender will cache your scripts and won't update until you restart the editor. This, combined with the `Reload Scripts Shortuct` tip above make development much quicker.
 
 ```python
@@ -84,7 +97,7 @@ else:
 # It's not elegant, but it does the job!
 ```
 
-### Quickly Find the Right Documentation
+## Quickly Find the Right Documentation
 Check the built-in templates first! Located at `Text Editor > Templates` - This has a lot of great examples of common functionality.
 
 When looking for Blender scripting documentation, search for `bpy.{namespace}`. This  will usually show scripting pages, instead of usage docs and tuts.

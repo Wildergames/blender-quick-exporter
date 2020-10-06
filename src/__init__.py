@@ -1,7 +1,7 @@
 
 bl_info = {
 	"name": "Quick Exporter",
-	"description": "Allows for the quick creation and exporting of custom FBX packages",
+	"description": "Allows for the quick creation, management, and exportation of custom FBX packages",
 	"author": "Wilder Games Inc.",
 	"version": (1, 0),
 	"blender": (2, 80, 0),
