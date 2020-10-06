@@ -8,5 +8,8 @@
 *.blend4
 *.blend5
 
+# Built Addon
+quick-exporter.zip
+
 # VSCode
 *.code-workspace
