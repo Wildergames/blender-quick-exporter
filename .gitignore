@@ -9,7 +9,8 @@
 *.blend5
 
 # Built Addon
-quick-exporter.zip
+[Bb]in/*
+
 
 # VSCode
 *.code-workspace
