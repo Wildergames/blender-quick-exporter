@@ -1,9 +1,9 @@
 # Blender Quick Exporter
-A **free** Blender addon which allows users to configure and manage exportable packages from objects within a Blender file. These `Export Packages` can be exported manually and/or automatically, as individual FBX files.
+A **free** Blender addon which allows users to configure and manage exportable packages from objects within a Blender file. These `Export Packages` can be exported manually and/or automatically as individual FBX files.
 
-This addon is intended to be a set-it-and-forget-it solution to FBX exporting. Once you've created and configured your export packages, you shouldn't need to change the Quick Exporter settings very often.
+This addon is intended to be a set-it-and-forget-it solution to FBX exporting. Once you've created and configured your export packages, you shouldn't need to change the Quick Exporter settings very often. Simply make changes, click Export, and you're done!
 
-When modifying a mesh, simply make the appropriate edits and press one of the `Export` buttons.
+Visit the [**Blender Quick Exporter** itch.io page](https://wilder-games.itch.io/blender-quick-exporter) for more information.
 
 # Quick Start
 A small number of steps to quickly begin using Quick Exporter:
@@ -51,6 +51,11 @@ In the Quick Exporter panel, there is an option to enable auto-exporting on save
 - `Disabled` - This will prevent Quick Exporter from automatically exporting on save. This is the default auto-export setting. With this option selected, users are required to manually use the `Export` buttons through the Quick Exporter interface.
 
 - `Auto-Export On Save` - This will export all packages when the Blend File is saved.
+
+---
+
+# License
+NONE YET
 
 ---
 
