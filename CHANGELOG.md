@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
-Check [README.md] for planned features and changes.
+Check [README.md](README.md) for planned features and changes.
 
 
 
