@@ -10,10 +10,10 @@ Once you've created and configured your export packages, you shouldn't need to c
 <br>
 
 <p float="left">
-  <img src="screenshots/001.png" width="20%" />
-  <img src="screenshots/002.png" width="20%" /> 
-  <img src="screenshots/003.png" width="20%" />
-  <img src="screenshots/004.png" width="20%" />
+  <img src="screenshots/001.png" width="24%" />
+  <img src="screenshots/002.png" width="24%" /> 
+  <img src="screenshots/003.png" width="24%" />
+  <img src="screenshots/004.png" width="24%" />
 </p>
 
 <br>
