@@ -6,7 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Check [README.md](README.md) for planned changes.
 
+---
 
+## [1.0.2] - 2020-10-18
+
+### Changed
+- Added author and license info header comments to python files
+
+---
 
 ## [1.0.1] - 2020-10-06
 
@@ -16,7 +23,7 @@ Check [README.md](README.md) for planned changes.
 ### Fixed
 - fixed error when exporting from any context besides `OBJECT`
 
-
+---
 
 ## [1.0.0] - 2020-10-01
 
