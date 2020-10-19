@@ -10,10 +10,10 @@ Once you've created and configured your export packages, you shouldn't need to c
 <br>
 
 # What does it accomplish?
-**Blender**  
-Quick Exporter allows for faster, easier, and more straightforward exporting. It saves your export data (including settings, locations, objects to include) and delegates all the work of remembering or coordinating this information into a handy editor panel.
+**In Blender?**  
+Quick Exporter allows for faster, easier, and more straightforward exporting from Blender. It saves your export data (including settings, locations, objects to include) and delegates all the work of remembering or coordinating this information into a handy editor panel.
 
-**Game Development**  
+**For game development?**  
 Instead of importing your *.blend* files directly into your projects, or using Blender's built-in (but non-persistent) *Export To* functions, Quick Exporter allows you to set up an asset pipeline which disconnects your source files from your asset files. The benefit of this being: More control over export settings, locations, and update frequency.
 
 <br>
@@ -46,11 +46,20 @@ We're new to open-source, so please, bear with us!
 
 We'd love to allow the community to be involved with the continued development of Quick Exporter and our other tools in the future, but we couldn't decide the best way to do so.
 
-If you have any suggestions on which license we should be using, please let us know!
+If you have any suggestions on which license we should be using, please let us know.
 
 <br>
 
-# Quick Start
+---
+
+<br>
+
+# How to Use
+Using Quick Exporter is intended to be quick and easy. 
+
+<br>
+
+## Quick Start
 1. Install addon
 2. Open addon panel *(View3D > Sidebar > Quick Exporter)*
 3. Create a new *'Export Package'*
@@ -66,15 +75,10 @@ Now you have an Export Package which will always export the objects you've speci
 
 <br>
 
-# Installation
+## Installation
 This addon can be installed by copying the contents of *quick-exporter.zip* into your Blender addons directory.
 
 Make sure to copy the entire *quick-exporter* directory to your Blender addons directory.
-
-<br>
-
-# How to Use
-Using Quick Exporter is intended to be quick and easy:
 
 <br>
 
@@ -107,6 +111,7 @@ This will prevent Quick Exporter from automatically exporting on save. This is t
 **Auto-Export On Save**  
 This will export all packages when the Blend File is saved.
 
+<br>
 
 ---
 
