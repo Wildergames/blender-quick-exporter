@@ -11,6 +11,5 @@
 # Built Addon
 [Bb]in/*
 
-
 # VSCode
 *.code-workspace
