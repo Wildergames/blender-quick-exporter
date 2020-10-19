@@ -22,7 +22,7 @@ Once you've created and configured your export packages, you shouldn't need to c
 **In Blender?**  
 Quick Exporter allows for faster, easier, and more straightforward exporting from Blender. It saves your export data (including settings, locations, objects to include) and delegates all the work of remembering or coordinating this information into a handy editor panel.
 
-**For game development?**  
+**In game development?**  
 Instead of importing your *.blend* files directly into your projects, or using Blender's built-in (but non-persistent) *Export To* functions, Quick Exporter allows you to set up an asset pipeline which disconnects your source files from your asset files. The benefit of this being: More control over export settings, locations, and update frequency.
 
 <br>
