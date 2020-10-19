@@ -1,7 +1,21 @@
+'''
+--------------------------------------------------------
+Quick Exporter  -  Blender addon  -  by Wilder Games Inc.
+https://wilder.games  -  https://twitter.com/wildergames
+--------------------------------------------------------
+
+For license information, see the READEME and/or LICENSE
+files on the official GitHub repository:
+
+https://github.com/wildergames/blender-quick-exporter
+
+--------------------------------------------------------
+'''
+
 
 bl_info = {
 	"name": "Quick Exporter",
-	"description": "Allows for the quick creation, management, and exportation of custom FBX packages",
+	"description": "Allows for the quick creation, management, and exporting of custom FBX packages",
 	"author": "Wilder Games Inc.",
 	"version": (1, 0),
 	"blender": (2, 80, 0),

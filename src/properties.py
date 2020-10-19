@@ -1,3 +1,17 @@
+'''
+--------------------------------------------------------
+Quick Exporter  -  Blender addon  -  by Wilder Games Inc.
+https://wilder.games  -  https://twitter.com/wildergames
+--------------------------------------------------------
+
+For license information, see the READEME and/or LICENSE
+files on the official GitHub repository:
+
+https://github.com/wildergames/blender-quick-exporter
+
+--------------------------------------------------------
+'''
+
 import bpy
 from bpy.props import *
 
