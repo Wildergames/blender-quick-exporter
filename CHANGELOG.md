@@ -8,6 +8,13 @@ Check [README.md](README.md) for planned changes.
 
 ---
 
+## [1.0.3] - 2021-03-30
+
+### Fixed
+- Export path without a `.fbx` extension resulted in exporting a nameless `.fbx` file. Now if no filename ending in `.fbx` is found in the export path, the exported filename will default to `{package.name}.fbx`. 
+
+---
+
 ## [1.0.2] - 2020-10-18
 
 ### Changed

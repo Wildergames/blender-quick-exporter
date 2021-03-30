@@ -1,29 +1,29 @@
 # What is Quick Exporter?
 Quick Exporter is a **free** Blender addon by [Wilder](https://wilder.games), which allows users to configure and manage exportable packages from objects within a Blender file.
 
-These **Export Packages** can be exported manually and/or automatically, as a single or individual FBX files.
+These **Export Packages** can be exported manually and/or automatically, as a single or individual **.fbx** files.
 
-This addon is intended to act as a **set-it-and-forget-it** solution to FBX exporting.
+This addon is intended to act as a **set-it-and-forget-it** solution to **.fbx** exporting.
 
-Once you've created and configured your export packages, you shouldn't need to change the Quick Exporter settings very often. Simply make changes, click Export, and you're done.
+Once you've created and configured your export packages, you shouldn't need to change the Quick Exporter settings very often. Simply make changes to your file, click Export, and you're done.
 
 <br>
-
 <p float="left">
   <img src="screenshots/001.png" width="24%" />
   <img src="screenshots/002.png" width="24%" /> 
   <img src="screenshots/003.png" width="24%" />
   <img src="screenshots/004.png" width="24%" />
 </p>
-
 <br>
 
 # What does it accomplish?
 **In Blender?**  
-Quick Exporter allows for faster, easier, and more straightforward exporting from Blender. It saves your export data (including settings, locations, objects to include) and delegates all the work of remembering or coordinating this information into a handy editor panel.
+Quick Exporter allows for faster, easier, and more straightforward **.fbx** exporting from Blender. It saves your export data (including settings, locations, objects to include) and delegates all the work of remembering or coordinating this information into a handy editor panel.
 
-**In game development?**  
+**For game development?**  
 Instead of importing your *.blend* files directly into your projects, or using Blender's built-in (but non-persistent) *Export To* functions, Quick Exporter allows you to set up an asset pipeline which disconnects your source files from your asset files. The benefit of this being: More control over export settings, locations, and update frequency.
+
+In game engines such as **Unity** or **Unreal** this allows us to easily avoid orientation errors, incorrect exported object selections, and animation issues caused by inconsistent export settings.
 
 <br>
 
@@ -59,12 +59,8 @@ If you have any suggestions on which license we should be using, please let us k
 
 <br>
 
----
-
-<br>
-
 # How to Use
-Using Quick Exporter is intended to be quick and easy. 
+Using Quick Exporter is intended to be quick and easy.
 
 <br>
 
@@ -122,18 +118,14 @@ This will export all packages when the Blend File is saved.
 
 <br>
 
----
-
-<br>
-
 # Planned Features
 We're planning on adding more features to Quick Exporter in the future, including:
 
 **Export Settings data objects**  
-Adding the ability to store and reference various embedded Export Settings objects (just like Materials, or Textures), instead of having one unique set of settings per Export Package. This would allow us to also store defaults for various export platforms and variations. For example: FBX Standard, Unity, Unity (Animated), Unreal, etc.
+Adding the ability to store and reference various embedded Export Settings objects (just like Materials, or Textures), instead of having one unique set of settings per Export Package. This would allow us to also store defaults for various export platforms and variations. For example: FBX Standard, Unity, Unity (Animated), Unreal, Unreal (Animated), etc.
 
 **Support for more export file types**  
-Adding support for exporting more than just .fbx files.
+Adding support for exporting more export file types, along with .fbx
 
 ---
 

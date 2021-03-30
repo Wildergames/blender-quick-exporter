@@ -60,8 +60,11 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		for obj in package.objects:
 			print("Quick Exporter:    + " + obj.pointer.name)
 			obj.pointer.select_set(True)
-
-		path = bpy.path.ensure_ext(bpy.path.abspath(package.path), '.fbx')
+		
+		path = bpy.path.abspath(package.path)
+		if not path.lower().endswith('.fbx'):
+			path = bpy.path.ensure_ext(bpy.path.abspath(package.path), package.name + '.fbx')
+			
 		print(path)
 		
 		bpy.ops.export_scene.fbx(
