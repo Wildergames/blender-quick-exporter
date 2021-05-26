@@ -56,6 +56,12 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		# Deselect all objects
 		bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 		bpy.ops.object.select_all(action='DESELECT')
+		
+		for col in package.collections:
+			print("Quick Exporter:    + " + col.pointer.name + " (Collection)")
+			for obj in col.pointer.all_objects:
+				print("Quick Exporter:        + " + obj.name)
+				obj.select_set(True)
 
 		for obj in package.objects:
 			print("Quick Exporter:    + " + obj.pointer.name)
