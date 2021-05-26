@@ -220,22 +220,21 @@ class QUICKEXPORTER_OT_package_collection_list_add_selected(bpy.types.Operator):
 		print()
 		print("Quick Exporter: Adding all selected collections (+ added, x skipped)")
 
+		c = context.collection
 		collection_list = context.scene.quick_exporter.packages[context.scene.quick_exporter.package_index].collections
-
-		for o in context.selected_objects:
-
-			skip = False
-			for oo in collection_list:
-				if oo.pointer == o:
-					print("Quick Exporter:   x " + o.name)
-					skip = True
-
-			if skip:
-				continue
-
-			print("Quick Exporter:   + " + o.name)
+		
+		print("COLLECTION: " + context.collection.name);
+		
+		skip = False;
+		for cc in collection_list:
+			if cc.pointer == c:
+				print("Quick Exporter:   x " + c.name)
+				skip = True
+				
+		if not skip:
+			print("Quick Exporter:   + " + c.name)
 			collection_list.add()
-			collection_list[len(collection_list) - 1].pointer = o
+			collection_list[len(collection_list) - 1].pointer = c
 
 		return{'FINISHED'}
 		
