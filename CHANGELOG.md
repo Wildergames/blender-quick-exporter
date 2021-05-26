@@ -11,8 +11,7 @@ Check [README.md](README.md) for planned changes.
 ## [1.1.0] - 2021-05-26
 
 ### Added
-- Added support for Collections, which will include all enabled Objects within each added Collection in the exported file.
-
+- Added support for Collections in export packages. As well as Objects, users can now add Collections to export packages. This will include all enabled children of each added Collection in the exported file.
 
 ---
 
