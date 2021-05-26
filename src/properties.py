@@ -20,6 +20,12 @@ class QUICKEXPORTER_ObjectPointer(bpy.types.PropertyGroup):
 		name="Object",
 		type=bpy.types.Object
 	)
+	
+class QUICKEXPORTER_CollectionPointer(bpy.types.PropertyGroup):
+	pointer: bpy.props.PointerProperty(
+		name="Collection",
+		type=bpy.types.Collection
+	)
 
 class QUICKEXPORTER_ExportPackageSettingsInclude(bpy.types.PropertyGroup):
 	
@@ -343,12 +349,17 @@ class QUICKEXPORTER_ExportPackage(bpy.types.PropertyGroup):
 	path: StringProperty(
 		name="Path",
 		subtype="FILE_PATH",
-		default="/"
+		default="//"
 	)
 
 	objects: CollectionProperty(
 		name="Objects",
 		type=QUICKEXPORTER_ObjectPointer
+	)
+	
+	collections: CollectionProperty(
+		name="Collections",
+		type=QUICKEXPORTER_CollectionPointer
 	)
 		
 	object_index: IntProperty(
@@ -387,6 +398,7 @@ class QUICKEXPORTER_Data(bpy.types.PropertyGroup):
 """ Registration """
 def register():
 	bpy.utils.register_class(QUICKEXPORTER_ObjectPointer)
+	bpy.utils.register_class(QUICKEXPORTER_CollectionPointer)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsInclude)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsTransform)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsGeometry)
@@ -407,4 +419,5 @@ def unregister():
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsArmature)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsAnimation)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettings)
+	bpy.utils.unregister_class(QUICKEXPORTER_CollectionPointer)
 	bpy.utils.unregister_class(QUICKEXPORTER_ObjectPointer)

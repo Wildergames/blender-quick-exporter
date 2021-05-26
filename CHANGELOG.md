@@ -8,6 +8,14 @@ Check [README.md](README.md) for planned changes.
 
 ---
 
+## [1.1.0] - 2021-05-26
+
+### Added
+- Added support for Collections, which will include all enabled Objects within each added Collection in the exported file.
+
+
+---
+
 ## [1.0.3] - 2021-03-30
 
 ### Fixed

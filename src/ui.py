@@ -128,6 +128,31 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 			package_column.prop(package, "name")
 			package_column.prop(package, "path")
 
+			""" Package Collections List """
+			collections_box_row = package_column.row()
+			collections_box_split = collections_box_row.split(factor=0.24)
+
+			collection_name_column = collections_box_split.column()
+			collection_name_column.label(text="Collections:")
+			
+			collections_box_column = collections_box_split.column()
+			collections_box = collections_box_column.box()
+			
+			collections_add_row = collections_box.row(align=True)
+			collections_add_row.operator("quick_exporter.package_collection_list_add", text="Add New")
+			collections_add_row.operator("quick_exporter.package_collection_list_add_selected", text="Add Selected")
+
+			collections_column_row = collections_box.row()
+			collections_column = collections_column_row.column()
+
+			if len(package.collections) <= 0:
+				collections_column.label(text="No Collections Set")
+
+			for collection_index in range(len(package.collections)):
+				collection_row = collections_column.row()
+				collection_row.prop(package.collections[collection_index], "pointer", text="")
+				collection_row.operator("quick_exporter.package_collection_list_remove", text="", icon="REMOVE").index = collection_index
+			
 			""" Package Objects List """
 			objects_box_row = package_column.row()
 			objects_box_split = objects_box_row.split(factor=0.24)

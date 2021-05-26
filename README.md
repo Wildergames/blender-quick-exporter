@@ -70,7 +70,7 @@ Using Quick Exporter is intended to be quick and easy.
 3. Create a new *'Export Package'*
 4. Add a *name* to the new export package
 5. Add a *path* to export your package to
-6. Add any number of *objects* to the new export package
+6. Add any number of *objects* and/or *collections* to the new export package
 7. If necessary, modify the export settings
 8. Click one of the two *Export* buttons, or enable *Auto-Export*
 
