@@ -332,6 +332,12 @@ class QUICKEXPORTER_ExportPackage(bpy.types.PropertyGroup):
 		self.name = old.name
 		self.path = old.path
 
+		'''Set Collection References Manually'''
+		self.collections.clear()
+		for c in old.collections:
+			self.collections.add()
+			self.collections[len(self.collections) - 1].pointer = c.pointer
+			
 		'''Set Object References Manually'''
 		self.objects.clear()
 		for o in old.objects:
