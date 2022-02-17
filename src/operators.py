@@ -82,6 +82,10 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 			use_active_collection = False,
 			object_types = { "EMPTY", "CAMERA", "LIGHT", "ARMATURE", "MESH", "OTHER" },
 
+			# Textures
+			path_mode = 'COPY',
+			embed_textures = True,
+
 			# Include
 			use_custom_props = settings.include.custom_properties,
 
