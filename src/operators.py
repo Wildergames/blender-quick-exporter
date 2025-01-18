@@ -70,7 +70,9 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 		path = bpy.path.abspath(package.path)
 		if not path.lower().endswith('.fbx'):
 			path = bpy.path.ensure_ext(bpy.path.abspath(package.path), package.name + '.fbx')
-			
+		
+		path = path.replace("\\", "/")
+
 		print(path)
 		
 		bpy.ops.export_scene.fbx(
