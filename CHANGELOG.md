@@ -8,6 +8,16 @@ Check [README.md](README.md) for planned changes.
 
 ---
 
+## [1.2.0] - 2026-02-06
+
+### Fixed
+- Fixed path field no longer accepting relative path values
+
+### Added
+- Added support for embedding textures.
+
+---
+
 ## [1.1.0] - 2021-05-26
 
 ### Added
@@ -18,7 +28,7 @@ Check [README.md](README.md) for planned changes.
 ## [1.0.3] - 2021-03-30
 
 ### Fixed
-- Export path without a `.fbx` extension resulted in exporting a nameless `.fbx` file. Now if no filename ending in `.fbx` is found in the export path, the exported filename will default to `{package.name}.fbx`. 
+- Export path without a `.fbx` extension resulted in exporting a nameless `.fbx` file. Now if no filename ending in `.fbx` is found in the export path, the exported filename will default to `{package.name}.fbx`.
 
 ---
 
