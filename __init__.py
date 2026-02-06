@@ -1,6 +1,6 @@
 '''
 --------------------------------------------------------
-Quick Exporter  -  Blender addon  -  by Wilder Games Inc.
+Quick Exporter  -  Blender addon   -   by Tony Coculuzzi
 https://wilder.games  -  https://twitter.com/wildergames
 --------------------------------------------------------
 
@@ -15,9 +15,9 @@ https://github.com/wildergames/blender-quick-exporter
 
 bl_info = {
 	"name": "Quick Exporter",
-	"description": "Allows for the quick creation, management, and exporting of custom FBX packages",
-	"author": "Wilder Games Inc.",
-	"version": (1, 0),
+	"author": "Tony Coculuzzi - Wilder Games",
+	"description": "Create, manage, and export custom mesh packages",
+	"version": (1, 2),
 	"blender": (2, 80, 0),
 	"location": "View3D > Sidebar > Quick Exporter",
 	"support": "COMMUNITY",
@@ -29,7 +29,7 @@ import bpy
 # Check if scripts have already been imported
 # If true, reload instead of importing
 if "ui" not in locals():
-	from . import properties, operators, app_handlers, ui 
+	from . import properties, operators, app_handlers, ui
 	print("Quick Exporter: Importing")
 else:
 	import importlib
@@ -37,7 +37,7 @@ else:
 	operators = importlib.reload(operators)
 	app_handlers = importlib.reload(app_handlers)
 	ui = importlib.reload(ui)
-	print("Quick Exporter: Reloading Scripts") 
+	print("Quick Exporter: Reloading Scripts")
 
 """ Registration """
 def register():
