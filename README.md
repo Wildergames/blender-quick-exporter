@@ -30,18 +30,12 @@ In game engines such as **Unity** or **Unreal** this allows us to easily avoid o
 # Free, huh?
 Heck yeah, **100% free**.
 
-That said, any donations are highly appreciated.
-
-Donations and purchases help us continue to support our tools for the game development community.
-
 <br>
 
 # Source Code  
 As a Blender addon, the Quick Exporter source code is bundled with every version. 
 
-Officially, Quick Exporter is available for download from [github](https://github.com/wildergames/blender-quick-exporter) and [itch.io](https://wilder-games.itch.io/blender-quick-exporter)
-
-For more information, visit the Wilder website: [wilder.games](https://wilder.games)
+Officially, Quick Exporter is available for download from [github](https://github.com/wildergames/blender-quick-exporter)
 
 <br>
 
