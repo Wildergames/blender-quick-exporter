@@ -284,6 +284,38 @@ class QUICKEXPORTER_ExportPackageSettingsAnimation(bpy.types.PropertyGroup):
 	)
 
 
+class QUICKEXPORTER_ExportPackageSettingsTextures(bpy.types.PropertyGroup):
+
+	def copy_from(self, old):
+		self.embed = old.embed
+		self.path_mode = old.path_mode
+
+	expanded: BoolProperty(
+		name = "Expanded",
+		default = True
+	)
+
+	embed: BoolProperty(
+		name = "Embed Textures",
+		description = "",
+		default = False
+	)
+
+	path_mode: EnumProperty(
+		name="Path Mode",
+		description="Method used to reference paths for externally exported data. (Must be set to COPY for Embed Textures to work)",
+		default="AUTO",
+		items={
+			("AUTO", "Auto", "Uses relative paths for files which are in a subdirectory of the exported location, absolute for any directories outside that.", "", 0),
+			("ABSOLUTE", "Absolute", "Uses full paths.", "", 1),
+			("RELATIVE", "Relative", "Uses relative paths in every case (except when on a different drive on Windows).", "", 2),
+			("MATCH", "Match", "Uses relative / absolute paths based on the paths used in Blender.", "", 3),
+			("STRIP", "Strip", "Only write the filename and omit the path component.", "", 4),
+			("COPY", "Copy", "Copy the file on exporting and reference it with a relative path.", "", 5)
+		}
+	)
+
+
 """ Package Export Settings """
 class QUICKEXPORTER_ExportPackageSettings(bpy.types.PropertyGroup):
 
@@ -322,6 +354,11 @@ class QUICKEXPORTER_ExportPackageSettings(bpy.types.PropertyGroup):
 	animation: PointerProperty(
 		name="Animation",
 		type=QUICKEXPORTER_ExportPackageSettingsAnimation
+	)
+
+	textures: PointerProperty(
+		name="Textures",
+		type=QUICKEXPORTER_ExportPackageSettingsTextures
 	)
 
 
@@ -411,6 +448,7 @@ def register():
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsGeometry)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsArmature)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsAnimation)
+	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettingsTextures)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackageSettings)
 	bpy.utils.register_class(QUICKEXPORTER_ExportPackage)
 	bpy.utils.register_class(QUICKEXPORTER_Data)
@@ -425,6 +463,7 @@ def unregister():
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsGeometry)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsArmature)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsAnimation)
+	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettingsTextures)
 	bpy.utils.unregister_class(QUICKEXPORTER_ExportPackageSettings)
 	bpy.utils.unregister_class(QUICKEXPORTER_CollectionPointer)
 	bpy.utils.unregister_class(QUICKEXPORTER_ObjectPointer)

@@ -117,6 +117,10 @@ class QUICKEXPORTER_OT_export_single(bpy.types.Operator):
 			bake_anim_force_startend_keying = settings.animation.force_keying,
 			bake_anim_step = settings.animation.sampling_rate,
 			bake_anim_simplify_factor = settings.animation.simplify,
+
+			# Textures
+			path_mode = settings.textures.path_mode,
+			embed_textures = settings.textures.embed,
 		)
 
 		# Restore previous selection

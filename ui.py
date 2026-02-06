@@ -75,6 +75,13 @@ def draw_settings(parent, package):
 			anim_box_container.prop(package.settings.animation, "sampling_rate")
 			anim_box_container.prop(package.settings.animation, "simplify")
 
+		textures_box = fbx_settings_column.box()
+		if draw_settings_foldout(textures_box, package.settings.textures, "Textures"):
+			textures_box.prop(package.settings.textures, "embed")
+			textures_box.prop(package.settings.textures, "path_mode")
+			if package.settings.textures.embed == True and package.settings.textures.path_mode != "COPY":
+				textures_box.label(text = "Embed Textures is enabled, Path Mode must be set to 'COPY", icon="ERROR")
+
 class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 	bl_idname = 'QUICKEXPORTER_PT_panel'
 	bl_label = 'Quick Exporter'
