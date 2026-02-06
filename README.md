@@ -1,5 +1,5 @@
 # What is Quick Exporter?
-Quick Exporter is a **free** Blender addon by [Wilder](https://wilder.games), which allows users to configure and manage exportable packages from objects within a Blender file.
+Quick Exporter is a **free** Blender addon by [Tony Coculuzzi](https://tonycoculuzzi.com), which allows users to configure and manage exportable packages from objects within a Blender file.
 
 These **Export Packages** can be exported manually and/or automatically, as a single or individual **.fbx** files.
 
@@ -28,7 +28,7 @@ In game engines such as **Unity** or **Unreal** this allows us to easily avoid o
 <br>
 
 # Free, huh?
-Heck yeah, **100% free**.
+Hell yeah, **100% free**.
 
 <br>
 
@@ -109,7 +109,7 @@ This will export all packages when the Blend File is saved.
 <br>
 
 # Planned Features
-We're planning on adding more features to Quick Exporter in the future, including:
+I'm planning on adding more features to Quick Exporter in the future, including:
 
 **Export Settings data objects**  
 Adding the ability to store and reference various embedded Export Settings objects (just like Materials, or Textures), instead of having one unique set of settings per Export Package. This would allow us to also store defaults for various export platforms and variations. For example: FBX Standard, Unity, Unity (Animated), Unreal, Unreal (Animated), etc.
