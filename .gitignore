@@ -2,11 +2,7 @@
 *__pycache__
 
 # Blender backup files
-*.blend1
-*.blend2
-*.blend3
-*.blend4
-*.blend5
+*.blend[0-9]
 
 # Built Addon
 [Bb]in/*
