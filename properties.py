@@ -1,6 +1,6 @@
 '''
 --------------------------------------------------------
-Quick Exporter  -  Blender addon  -  by Wilder Games Inc.
+Quick Exporter  -  Blender addon   -   by Tony Coculuzzi
 https://wilder.games  -  https://twitter.com/wildergames
 --------------------------------------------------------
 
@@ -20,7 +20,7 @@ class QUICKEXPORTER_ObjectPointer(bpy.types.PropertyGroup):
 		name="Object",
 		type=bpy.types.Object
 	)
-	
+
 class QUICKEXPORTER_CollectionPointer(bpy.types.PropertyGroup):
 	pointer: bpy.props.PointerProperty(
 		name="Collection",
@@ -28,7 +28,7 @@ class QUICKEXPORTER_CollectionPointer(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsInclude(bpy.types.PropertyGroup):
-	
+
 	def copy_from(self, old):
 		self.custom_properties = old.custom_properties
 
@@ -68,7 +68,7 @@ class QUICKEXPORTER_ExportPackageSettingsTransform(bpy.types.PropertyGroup):
 		description = "How to apply custom and units scalings in generated FBX file (Blender uses FBX scale to detect units on import, but many other applications do not handle the same way)",
 		default = "FBX_SCALE_NONE",
 		items = {
-			("FBX_SCALE_NONE", "All Local", "Apply custom scaling and units scaling to each object transformation, FBX scale remains at 1.0.", "", 0),	
+			("FBX_SCALE_NONE", "All Local", "Apply custom scaling and units scaling to each object transformation, FBX scale remains at 1.0.", "", 0),
 			("FBX_SCALE_UNITS", "FBX Units Scale", "Apply custom scaling to each object transformation, and units scaling to FBX scale.", "", 1),
 			("FBX_SCALE_CUSTOM", "FBX Custom Scale", "info", "Apply custom scaling to FBX scale, and units scaling to each object transformation.", 2),
 			("FBX_SCALE_ALL", "FBX All", "info", "Apply custom scaling and units scaling to FBX scale.", 3),
@@ -114,7 +114,7 @@ class QUICKEXPORTER_ExportPackageSettingsTransform(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsGeometry(bpy.types.PropertyGroup):
-	
+
 	def copy_from(self, old):
 		self.smoothing = old.smoothing
 		self.export_subdivision_surface = old.export_subdivision_surface
@@ -137,7 +137,7 @@ class QUICKEXPORTER_ExportPackageSettingsGeometry(bpy.types.PropertyGroup):
 			("EDGE", "Edge", "", "", 2),
 		}
 	)
-	
+
 	export_subdivision_surface: BoolProperty(
 		name = "Export Subdivision Surface",
 		description = "Export the last Catmull-Rom subdivision modifier as FBX subdivision (does not apply the modifier even if ‘Apply Modifiers’ is enabled)",
@@ -149,7 +149,7 @@ class QUICKEXPORTER_ExportPackageSettingsGeometry(bpy.types.PropertyGroup):
 		description = "Applies all modifiers on export",
 		default = True
 	)
-	
+
 	loose_edges: BoolProperty(
 		name = "Loose Edges",
 		description = "Export loose edges (as two-vertices polygons)",
@@ -188,7 +188,7 @@ class QUICKEXPORTER_ExportPackageSettingsArmature(bpy.types.PropertyGroup):
 			("-Z", "-Z Axis", "", "", 5)
 		}
 	)
-	
+
 	secondary_bone_axis : EnumProperty(
 		name = "Secondary Bone Axis",
 		default = "X",
@@ -218,7 +218,7 @@ class QUICKEXPORTER_ExportPackageSettingsArmature(bpy.types.PropertyGroup):
 		description = "Only write deforming bones (and non-deforming ones when they have deforming children)",
 		default = False
 	)
-	
+
 	add_leaf_bones: BoolProperty(
 		name = "Add Leaf Bones",
 		description = "Append a final bone to the end of each chain to specify last bone length (use this when you intend to edit the armature from exported data)",
@@ -226,7 +226,7 @@ class QUICKEXPORTER_ExportPackageSettingsArmature(bpy.types.PropertyGroup):
 	)
 
 class QUICKEXPORTER_ExportPackageSettingsAnimation(bpy.types.PropertyGroup):
-	
+
 	def copy_from(self, old):
 		self.bake = old.bake
 		self.key_all_bones = old.key_all_bones
@@ -235,7 +235,7 @@ class QUICKEXPORTER_ExportPackageSettingsAnimation(bpy.types.PropertyGroup):
 		self.force_keying = old.force_keying
 		self.sampling_rate = old.sampling_rate
 		self.simplify = old.simplify
-		
+
 	expanded: BoolProperty(
 		name = "Expanded",
 		default = True
@@ -276,7 +276,7 @@ class QUICKEXPORTER_ExportPackageSettingsAnimation(bpy.types.PropertyGroup):
 		description = "Sampling Rate, How often to evaluate animated values (in frames)",
 		default = 1
 	)
-	
+
 	simplify: FloatProperty(
 		name = "Simplify",
 		description="How much to simplify baked values (0.0 to disable, the higher the more simplified)",
@@ -298,7 +298,7 @@ class QUICKEXPORTER_ExportPackageSettings(bpy.types.PropertyGroup):
 		name = "Expanded",
 		default = True
 	)
-	
+
 	include: PointerProperty(
 		name="Include",
 		type=QUICKEXPORTER_ExportPackageSettingsInclude
@@ -337,7 +337,7 @@ class QUICKEXPORTER_ExportPackage(bpy.types.PropertyGroup):
 		for c in old.collections:
 			self.collections.add()
 			self.collections[len(self.collections) - 1].pointer = c.pointer
-			
+
 		'''Set Object References Manually'''
 		self.objects.clear()
 		for o in old.objects:
@@ -356,18 +356,19 @@ class QUICKEXPORTER_ExportPackage(bpy.types.PropertyGroup):
 		name="Path",
 		subtype="FILE_PATH",
 		default="//"
+		#options={'PATH_SUPPORTS_BLEND_RELATIVE'}
 	)
 
 	objects: CollectionProperty(
 		name="Objects",
 		type=QUICKEXPORTER_ObjectPointer
 	)
-	
+
 	collections: CollectionProperty(
 		name="Collections",
 		type=QUICKEXPORTER_CollectionPointer
 	)
-		
+
 	object_index: IntProperty(
 		name="Object Index",
 		description="The currently selected Object in the selected package",
@@ -395,7 +396,7 @@ class QUICKEXPORTER_Data(bpy.types.PropertyGroup):
 		description="Whether or not to automatically export all Export Packages on save",
 		default="DISABLED",
 		items={
-				("DISABLED", "Disabled", "Do not auto-export on save", "", 0),	
+				("DISABLED", "Disabled", "Do not auto-export on save", "", 0),
 				("ENABLED", "Export All On Save", "Export all export packages each time the .blend file is saved.", "", 1)
 			}
 		)

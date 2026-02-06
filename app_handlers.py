@@ -1,6 +1,6 @@
 '''
 --------------------------------------------------------
-Quick Exporter  -  Blender addon  -  by Wilder Games Inc.
+Quick Exporter  -  Blender addon   -   by Tony Coculuzzi
 https://wilder.games  -  https://twitter.com/wildergames
 --------------------------------------------------------
 

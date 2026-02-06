@@ -1,12 +1,12 @@
 schema_version = "1.0.0"
 
-id = "quick-exporter"
+id = "quickexporter"
 version = "1.0.0"
 name = "Quick Exporter"
 tagline = "Create, manage, and export custom model packages"
 maintainer = "Tony Coculuzzi - Wilder Games"
 type = "add-on"
-website = https://github.com/wildergames/blender-quick-exporter
+website = "https://github.com/wildergames/blender-quick-exporter"
 tags = ["Import-Export", "Pipeline", "Mesh"]
 
 blender_version_min = "4.2.0"

@@ -1,6 +1,6 @@
 '''
 --------------------------------------------------------
-Quick Exporter  -  Blender addon  -  by Wilder Games Inc.
+Quick Exporter  -  Blender addon   -   by Tony Coculuzzi
 https://wilder.games  -  https://twitter.com/wildergames
 --------------------------------------------------------
 
@@ -93,7 +93,7 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 		if scene.quick_exporter and scene.quick_exporter.package_index >= 0 and len(scene.quick_exporter.packages) > scene.quick_exporter.package_index and scene.quick_exporter.packages[scene.quick_exporter.package_index]:
 			export_text = "Export '" + scene.quick_exporter.packages[scene.quick_exporter.package_index].name + "'"
 			row.operator("quick_exporter.export_single",text=export_text).index = scene.quick_exporter.package_index
-		
+
 		row.operator("quick_exporter.export_all")
 
 		""" Auto-Export """
@@ -123,7 +123,7 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 		if scene.quick_exporter.package_index >= 0 and scene.quick_exporter.packages:
 			i = scene.quick_exporter.package_index
 			package = scene.quick_exporter.packages[i]
-			
+
 			package_column = layout.column()
 			package_column.prop(package, "name")
 			package_column.prop(package, "path")
@@ -134,10 +134,10 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 
 			collection_name_column = collections_box_split.column()
 			collection_name_column.label(text="Collections:")
-			
+
 			collections_box_column = collections_box_split.column()
 			collections_box = collections_box_column.box()
-			
+
 			collections_add_row = collections_box.row(align=True)
 			collections_add_row.operator("quick_exporter.package_collection_list_add", text="Add New")
 			collections_add_row.operator("quick_exporter.package_collection_list_add_selected", text="Add Selected")
@@ -152,17 +152,17 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 				collection_row = collections_column.row()
 				collection_row.prop(package.collections[collection_index], "pointer", text="")
 				collection_row.operator("quick_exporter.package_collection_list_remove", text="", icon="REMOVE").index = collection_index
-			
+
 			""" Package Objects List """
 			objects_box_row = package_column.row()
 			objects_box_split = objects_box_row.split(factor=0.24)
 
 			object_name_column = objects_box_split.column()
 			object_name_column.label(text="Objects:")
-			
+
 			objects_box_column = objects_box_split.column()
 			objects_box = objects_box_column.box()
-			
+
 			objects_add_row = objects_box.row(align=True)
 			objects_add_row.operator("quick_exporter.package_object_list_add", text="Add New")
 			objects_add_row.operator("quick_exporter.package_object_list_add_selected", text="Add Selected")
@@ -177,7 +177,7 @@ class QUICKEXPORTER_PT_panel(bpy.types.Panel):
 				object_row = objects_column.row()
 				object_row.prop(package.objects[object_index], "pointer", text="")
 				object_row.operator("quick_exporter.package_object_list_remove", text="", icon="REMOVE").index = object_index
-			
+
 			draw_settings(package_column, package)
 
 
@@ -195,12 +195,12 @@ class QUICKEXPORTER_UL_package_object_list(bpy.types.UIList):
 """ REGISTRATION """
 def register():
 	bpy.utils.register_class(QUICKEXPORTER_PT_panel)
-	
+
 	bpy.utils.register_class(QUICKEXPORTER_UL_packages_list)
 	bpy.utils.register_class(QUICKEXPORTER_UL_package_object_list)
 
 def unregister():
 	bpy.utils.unregister_class(QUICKEXPORTER_PT_panel)
-	
+
 	bpy.utils.unregister_class(QUICKEXPORTER_UL_packages_list)
 	bpy.utils.unregister_class(QUICKEXPORTER_UL_package_object_list)
