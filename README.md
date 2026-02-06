@@ -40,16 +40,12 @@ Officially, Quick Exporter is available for download from [github](https://githu
 <br>
 
 ## License
-We haven't yet chosen a license for Quick Exporter.
+AGPL-3.0 
 
 <br>
 
 ## Open Source Considerations
-We're new to open-source, so please, bear with us!
-
-We'd love to allow the community to be involved with the continued development of Quick Exporter and our other tools in the future, but we couldn't decide the best way to do so.
-
-If you have any suggestions on which license we should be using, please let us know.
+This repo is open to pull requests, issue submissions, and suggestions.
 
 <br>
 
