@@ -355,8 +355,8 @@ class QUICKEXPORTER_ExportPackage(bpy.types.PropertyGroup):
 	path: StringProperty(
 		name="Path",
 		subtype="FILE_PATH",
-		default="//"
-		#options={'PATH_SUPPORTS_BLEND_RELATIVE'}
+		default="//",
+		options={'PATH_SUPPORTS_BLEND_RELATIVE'}
 	)
 
 	objects: CollectionProperty(
