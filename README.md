@@ -33,24 +33,18 @@ Hell yeah, **100% free**.
 <br>
 
 # Source Code  
-As a Blender addon, the Quick Exporter source code is bundled with every version. 
+Quick Exporter is available for download from [github](https://github.com/wildergames/blender-quick-exporter)
 
-Officially, Quick Exporter is available for download from [github](https://github.com/wildergames/blender-quick-exporter)
+As a Blender addon, the Quick Exporter source code is bundled with every release.
 
-<br>
-
-## License
-AGPL-3.0 
-
-<br>
-
-## Open Source Considerations
 This repo is open to pull requests, issue submissions, and suggestions.
+
+**License:** AGPL-3.0 
 
 <br>
 
 # How to Use
-Using Quick Exporter is intended to be quick and easy.
+Using Quick Exporter is intended to be quick and easy. Each 
 
 <br>
 
@@ -64,22 +58,17 @@ Using Quick Exporter is intended to be quick and easy.
 7. If necessary, modify the export settings
 8. Click one of the two *Export* buttons, or enable *Auto-Export*
 
-That's it.
-
-Now you have an Export Package which will always export the objects you've specified to the location specified, using the settings specified. This can be done with one click of a button, or when the file is saved.
+That's it. Now you have an Export Package which will always export the objects you've specified to the location specified, using the settings specified. This can be done with one click of a button, or when the file is saved.
 
 <br>
 
 ## Installation
-This addon can be installed by copying the contents of *quick-exporter.zip* into your Blender addons directory.
-
-Make sure to copy the entire *quick-exporter* directory to your Blender addons directory.
+This addon can be installed by using the `Preferences > Addons > Install from Disk...` button, or by copying the contents of *quick-exporter.zip* into your Blender addons directory. If copying manually, make sure to copy the entire *quick-exporter* directory to your Blender addons directory.
 
 <br>
 
 ## The 'Quick Exporter' Panel
-This addon is controlled from a single panel in Blender, located at:  
-*3D Viewport &gt; Sidebar &gt; Quick Exporter*
+This addon is controlled from a single panel in Blender, located at: `3D Viewport > Sidebar > Quick Exporter`
 
 <br>
 
@@ -100,11 +89,11 @@ Alternatively, you may select an individual package from the list, and click the
 ## Auto-Export
 In the Quick Exporter panel, there is an option to enable auto-exporting on save. You can choose one of the following options:
 
-**Disabled**  
-This will prevent Quick Exporter from automatically exporting on save. This is the default auto-export setting. With this option selected, users are required to manually use the <em>Export</em> buttons through the Quick Exporter interface.
+**Disabled**
+> This will prevent Quick Exporter from automatically exporting on save. This is the default auto-export setting. With this option selected, users are required to manually use the <em>Export</em> buttons through the Quick Exporter interface.
 
-**Auto-Export On Save**  
-This will export all packages when the Blend File is saved.
+**Auto-Export On Save**
+> This will export all packages when the Blend File is saved.
 
 <br>
 
@@ -112,11 +101,7 @@ This will export all packages when the Blend File is saved.
 I'm planning on adding more features to Quick Exporter in the future, including:
 
 **Export Settings data objects**  
-Adding the ability to store and reference various embedded Export Settings objects (just like Materials, or Textures), instead of having one unique set of settings per Export Package. This would allow us to also store defaults for various export platforms and variations. For example: FBX Standard, Unity, Unity (Animated), Unreal, Unreal (Animated), etc.
+> Adding the ability to store and reference various embedded Export Settings objects (just like Materials, or Textures), instead of having one unique set of settings per Export Package. This would allow us to also store defaults for various export platforms and variations. For example: FBX Standard, Unity, Unity (Animated), Unreal, Unreal (Animated), etc.
 
 **Support for more export file types**  
-Adding support for exporting more export file types, along with .fbx
-
----
-
-<br>
+> Adding support for exporting more export file types, along with .fbx
